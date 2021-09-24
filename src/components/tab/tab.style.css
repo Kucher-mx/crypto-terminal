@@ -1,0 +1,21 @@
+.tab {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 35px;
+    text-transform: uppercase;
+    color: #fff;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.tab:hover {
+    background-color: rgba(72, 64, 116, 0.515);
+}
+
+.reg-active,
+.log-active {
+    border: 1px solid #fff
+}

@@ -1,0 +1,23 @@
+.header {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    justify-content: space-between;
+    background-color: rgb(37, 43, 68);
+}
+
+.sign-in_button span {
+    color: azure;
+}
+
+.settings_button span {
+    color: azure;
+}
+
+.right-side {
+    width: 25%;
+    display: flex;
+    justify-content: space-between;
+}
