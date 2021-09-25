@@ -4,6 +4,7 @@ import Button from "@material-ui/core/Button";
 
 import "./header.styles.css";
 import { useNavigate } from "react-router-dom";
+import { auth } from "../../firebase/firebase";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -23,7 +24,10 @@ const Header = () => {
           variant="text"
           size="small"
           className="sign-in_button"
-          onClick={(e) => navigate("/auth")}
+          onClick={(e) => {
+            auth.signOut();
+            navigate("/auth");
+          }}
         >
           <span>log out</span>
         </Button>

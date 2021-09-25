@@ -7,6 +7,7 @@ import {
   createUserWithEmailAndPassword,
 } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+import { NavigateFunction } from "react-router-dom";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAeEcVxf6NiYnKWqMu8LcoCb2Ysti9red8",
@@ -103,7 +104,15 @@ export const createUserWithEmailAndPasswordHandler = (
 
 const provider = new GoogleAuthProvider();
 provider.setCustomParameters({ prompt: "select_account" });
-export const signInWithGoogle = () => signInWithPopup(auth, provider);
+export const signInWithGoogle = async (navigation: NavigateFunction) => {
+  try {
+    const credentials = await signInWithPopup(auth, provider);
+    navigation("/");
+    console.log(credentials);
+  } catch (e) {
+    console.log(e);
+  }
+};
 
 export const signInWithEmailAndPasswordHandler = async (
   email: string,

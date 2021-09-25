@@ -10,21 +10,27 @@ import {
   OnSubmitRegHandler,
 } from "../../helpers/auth.utils";
 import Tab from "../../components/tab/tab.component";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 
 const generateTab = (
   submitHandler: (
     e: React.FormEvent<HTMLFormElement>,
-    state: formState
+    state: formState,
+    navigation: NavigateFunction
   ) => void,
   state: formState,
   changeHandler: (
     e: React.ChangeEvent<HTMLInputElement>,
     state: formState
   ) => void,
+  navigation: NavigateFunction,
   type: string
 ) => (
   <div className="input-wrapper">
-    <form className="auth-form" onSubmit={(e) => submitHandler(e, state)}>
+    <form
+      className="auth-form"
+      onSubmit={(e) => submitHandler(e, state, navigation)}
+    >
       <Input
         placeholder="enter your email"
         type="text"
@@ -44,7 +50,11 @@ const generateTab = (
           {type}
         </button>
         <div className="or">or</div>
-        <Button variant="contained" size="small" onClick={signInWithGoogle}>
+        <Button
+          variant="contained"
+          size="small"
+          onClick={() => signInWithGoogle(navigation)}
+        >
           Log in with Google
         </Button>
       </div>
@@ -55,6 +65,7 @@ const generateTab = (
 const Auth = () => {
   const [state, setstate] = useState({ email: "", password: "" });
   const [tab, setTab] = useState(true);
+  const navigation = useNavigate();
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -82,8 +93,20 @@ const Auth = () => {
         />
       </div>
       {tab
-        ? generateTab(OnSubmitRegHandler, state, onChangeHandler, "register")
-        : generateTab(onSubmitLoginHandler, state, onChangeHandler, "login")}
+        ? generateTab(
+            OnSubmitRegHandler,
+            state,
+            onChangeHandler,
+            navigation,
+            "register"
+          )
+        : generateTab(
+            onSubmitLoginHandler,
+            state,
+            onChangeHandler,
+            navigation,
+            "login"
+          )}
     </div>
   );
 };

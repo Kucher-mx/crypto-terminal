@@ -1,3 +1,4 @@
+import { NavigateFunction } from "react-router-dom";
 import {
   createUserWithEmailAndPasswordHandler,
   signInWithEmailAndPasswordHandler,
@@ -10,12 +11,14 @@ export type formState = {
 
 export const onSubmitLoginHandler = async (
   e: React.FormEvent<HTMLFormElement>,
-  state: formState
+  state: formState,
+  navigation: NavigateFunction
 ) => {
   e.preventDefault();
   try {
     const { email, password } = state;
     await signInWithEmailAndPasswordHandler(email, password);
+    navigation("/");
   } catch (e) {
     console.log("auth error: ", e);
   }
@@ -23,9 +26,15 @@ export const onSubmitLoginHandler = async (
 
 export const OnSubmitRegHandler = async (
   e: React.FormEvent<HTMLFormElement>,
-  state: formState
+  state: formState,
+  navigation: NavigateFunction
 ) => {
   e.preventDefault();
-  const { email, password } = state;
-  createUserWithEmailAndPasswordHandler(email, password);
+  try {
+    const { email, password } = state;
+    await createUserWithEmailAndPasswordHandler(email, password);
+    navigation("/");
+  } catch (e) {
+    console.log("auth error: ", e);
+  }
 };
