@@ -13,7 +13,7 @@ const Tab = (props: Props) => {
   const { title, onClickHandler, tabType, current } = props;
   const classes = ["tab"];
   if ((current && tabType) || (!current && !tabType)) {
-    classes.push("reg-active");
+    classes.push("active");
   }
 
   return (

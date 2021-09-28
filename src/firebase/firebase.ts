@@ -6,8 +6,10 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 import { NavigateFunction } from "react-router-dom";
+import { setToSessionStorage } from "../helpers/auth.utils";
+import { firebaseUsersData } from "../types/gen.types";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAeEcVxf6NiYnKWqMu8LcoCb2Ysti9red8",
@@ -25,103 +27,132 @@ export const firestore = getFirestore(app);
 
 export const auth = getAuth(app);
 
-export const createUserWithEmailAndPasswordHandler = (
+export const createUserWithEmailAndPasswordHandler = async (
   email: string,
   password: string
 ) => {
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      console.log(user);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+  const credentials = await createUserWithEmailAndPassword(
+    auth,
+    email,
+    password
+  );
+  console.log(credentials);
+  return credentials;
 };
 
-// export const createUserProfileDocument = async (
-//   userAuth: any,
-//   additionalData: any
-// ) => {
-//   if (!userAuth) return;
+export const createUserDoc = async (
+  userAuthId: string,
+  data: firebaseUsersData
+) => {
+  try {
+    const setDocRef = doc(firestore, "users", userAuthId);
+    await setDoc(setDocRef, {
+      apiKey: data.apiKey,
+      secretApiKey: data.secretApiKey,
+      created_at: new Date(),
+      email: data.email,
+    });
+  } catch (e) {
+    console.log("create doc error: ", e);
+  }
+};
 
-//   const userRef = await getDocs(collection(app, `users/${userAuth.uid}`));
+export const updateUserDoc = async (
+  userAuthId: string,
+  data: {
+    apiKey: string;
+    secretApiKey: string;
+  }
+) => {
+  try {
+    const docRef = doc(firestore, "users", userAuthId);
+    await setDoc(
+      docRef,
+      {
+        apiKey: data.apiKey,
+        secretApiKey: data.secretApiKey,
+      },
+      { merge: true }
+    );
+    sessionStorage.clear();
+    const dataToSet = await getDataByUserId(userAuthId);
+    dataToSet && setToSessionStorage({ ...dataToSet, id: userAuthId });
+  } catch (e) {
+    console.log("update doc error: ", e);
+  }
+};
 
-//   const snapShot = await userRef.get();
-
-//   if (!snapShot.exists) {
-//     const { displayName, email } = userAuth;
-//     const createdAt = new Date();
-//     try {
-//       await userRef.set({
-//         displayName,
-//         email,
-//         createdAt,
-//         ...additionalData,
-//       });
-//     } catch (error) {
-//       console.log("error creating user", error.message);
-//     }
-//   }
-
-//   return userRef;
-// };
-
-//   export const addCollectionAndDocuments = async (
-//     collectionKey,
-//     objectsToAdd
-//   ) => {
-//     const collectionRef = firestore.collection(collectionKey);
-
-//     const batch = firestore.batch();
-//     objectsToAdd.forEach(obj => {
-//       const newDocRef = collectionRef.doc();
-//       batch.set(newDocRef, obj);
-//     });
-
-//     return await batch.commit();
-//   };
-
-//   export const convertCollectionsSnapshotToMap = collections => {
-//     const transformedCollection = collections.docs.map(doc => {
-//       const { title, items } = doc.data();
-
-//       return {
-//         routeName: encodeURI(title.toLowerCase()),
-//         id: doc.id,
-//         title,
-//         items
-//       };
-//     });
-
-//     return transformedCollection.reduce((accumulator, collection) => {
-//       accumulator[collection.title.toLowerCase()] = collection;
-//       return accumulator;
-//     }, {});
-//   };
-
-// export const firestore = firebase.firestore();
+export const getDataByUserId = async (userAuthId: string) => {
+  try {
+    const docRef = doc(firestore, "users", userAuthId);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      return docSnap.data();
+    } else {
+      console.log("No such user in db!");
+    }
+  } catch (e) {
+    console.log("error in getting info by user id: ", e);
+  }
+};
 
 const provider = new GoogleAuthProvider();
 provider.setCustomParameters({ prompt: "select_account" });
 export const signInWithGoogle = async (navigation: NavigateFunction) => {
   try {
     const credentials = await signInWithPopup(auth, provider);
+    const userId = credentials.user.uid;
+    const docRef = doc(firestore, "users", userId);
+    const docSnap = await getDoc(docRef);
+    if (!docSnap.exists()) {
+      createUserDoc(userId, {
+        apiKey: "",
+        secretApiKey: "",
+        email: credentials.user.email,
+      });
+    }
+    const dataToSet = await getDataByUserId(credentials.user.uid);
+    dataToSet &&
+      setToSessionStorage({ ...dataToSet, id: credentials.user.uid });
     navigation("/");
-    console.log(credentials);
   } catch (e) {
-    console.log(e);
+    console.log("error in getting info by user id: ", e);
   }
 };
 
 export const signInWithEmailAndPasswordHandler = async (
   email: string,
   password: string
-) => await signInWithEmailAndPassword(auth, email, password);
+) => {
+  try {
+    const credentials = await signInWithEmailAndPassword(auth, email, password);
+
+    const dataToSet = await getDataByUserId(credentials.user.uid);
+    dataToSet &&
+      setToSessionStorage({ ...dataToSet, id: credentials.user.uid });
+    return credentials;
+  } catch (e) {
+    console.log("signIn error: ", e);
+  }
+};
 
 export const signUpWithEmailAndPasswordHandler = async (
   email: string,
   password: string
-) => await createUserWithEmailAndPassword(auth, email, password);
+) => {
+  try {
+    const credentials = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    const dataToSet = await getDataByUserId(credentials.user.uid);
+    dataToSet &&
+      setToSessionStorage({ ...dataToSet, id: credentials.user.uid });
+    return credentials;
+  } catch (e) {
+    console.log("signUp error: ", e);
+  }
+};
 
 export default firebase;

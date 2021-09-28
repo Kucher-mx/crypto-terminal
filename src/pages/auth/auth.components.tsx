@@ -16,7 +16,8 @@ const generateTab = (
   submitHandler: (
     e: React.FormEvent<HTMLFormElement>,
     state: formState,
-    navigation: NavigateFunction
+    navigation: NavigateFunction,
+    setState: (state: formState) => void
   ) => void,
   state: formState,
   changeHandler: (
@@ -24,12 +25,13 @@ const generateTab = (
     state: formState
   ) => void,
   navigation: NavigateFunction,
-  type: string
+  type: string,
+  setState: (state: formState) => void
 ) => (
   <div className="input-wrapper">
     <form
       className="auth-form"
-      onSubmit={(e) => submitHandler(e, state, navigation)}
+      onSubmit={(e) => submitHandler(e, state, navigation, setState)}
     >
       <Input
         placeholder="enter your email"
@@ -45,14 +47,28 @@ const generateTab = (
         onChange={(e) => changeHandler(e, state)}
         name="password"
       />
+      {type === "register" ? (
+        <Input
+          placeholder="repeat your password"
+          type="password"
+          value={state.repeatPass}
+          onChange={(e) => changeHandler(e, state)}
+          name="repeatPass"
+        />
+      ) : null}
+      {state.error ? <div className="error">{state.error}</div> : null}
       <div className="buttons-wrapper">
-        <button type="submit" className="form-submit">
+        <button
+          type="submit"
+          className="form-submit"
+          disabled={Boolean(state.error)}
+        >
           {type}
         </button>
         <div className="or">or</div>
         <Button
           variant="contained"
-          size="small"
+          size="medium"
           onClick={() => signInWithGoogle(navigation)}
         >
           Log in with Google
@@ -63,7 +79,12 @@ const generateTab = (
 );
 
 const Auth = () => {
-  const [state, setstate] = useState({ email: "", password: "" });
+  const [state, setstate] = useState({
+    email: "",
+    password: "",
+    repeatPass: "",
+    error: "",
+  });
   const [tab, setTab] = useState(true);
   const navigation = useNavigate();
 
@@ -73,40 +94,45 @@ const Auth = () => {
     setstate({
       ...state,
       [name]: value,
+      error: "",
     });
   };
 
   return (
     <div className="auth-page">
-      <div className="tabs">
-        <Tab
-          title="registration"
-          onClickHandler={setTab}
-          tabType={true}
-          current={tab}
-        />
-        <Tab
-          title="login"
-          onClickHandler={setTab}
-          tabType={false}
-          current={tab}
-        />
+      <div className="auth-wrapper">
+        <div className="tabs">
+          <Tab
+            title="registration"
+            onClickHandler={setTab}
+            tabType={true}
+            current={tab}
+          />
+          <Tab
+            title="login"
+            onClickHandler={setTab}
+            tabType={false}
+            current={tab}
+          />
+        </div>
+        {tab
+          ? generateTab(
+              OnSubmitRegHandler,
+              state,
+              onChangeHandler,
+              navigation,
+              "register",
+              setstate
+            )
+          : generateTab(
+              onSubmitLoginHandler,
+              state,
+              onChangeHandler,
+              navigation,
+              "login",
+              setstate
+            )}
       </div>
-      {tab
-        ? generateTab(
-            OnSubmitRegHandler,
-            state,
-            onChangeHandler,
-            navigation,
-            "register"
-          )
-        : generateTab(
-            onSubmitLoginHandler,
-            state,
-            onChangeHandler,
-            navigation,
-            "login"
-          )}
     </div>
   );
 };

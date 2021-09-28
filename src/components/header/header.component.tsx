@@ -26,6 +26,7 @@ const Header = () => {
           className="sign-in_button"
           onClick={(e) => {
             auth.signOut();
+            sessionStorage.clear();
             navigate("/auth");
           }}
         >
