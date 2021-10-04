@@ -5,14 +5,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgb(57, 47, 84);
+    background: radial-gradient(123.22% 129.67% at 100.89% -5.6%, #201D47 0%, #17153A 100%);
 }
 
 .profile_content {
-    background: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    backdrop-filter: blur(6.5px);
-    -webkit-backdrop-filter: blur(6.5px);
+    background: linear-gradient(219.89deg, rgba(80, 77, 129, 0.17) 0.1%, rgba(38, 35, 83, 0.78) 90.43%, rgba(84, 80, 160, 0) 100%);
+    filter: drop-shadow(-29px 60px 90px rgba(23, 18, 43, 0.55));
+    backdrop-filter: blur(25px);
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.18);
     width: 50%;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Input from "../../components/input/input.component";
-import Button from "@mui/material/Button";
+import { ReactComponent as BitcoinImage } from "./assets/Bitcoin.svg";
 
 import "./auth.styles.css";
 import { signInWithGoogle } from "../../firebase/firebase";
@@ -33,29 +33,31 @@ const generateTab = (
       className="auth-form"
       onSubmit={(e) => submitHandler(e, state, navigation, setState)}
     >
-      <Input
-        placeholder="enter your email"
-        type="text"
-        value={state.email}
-        onChange={(e) => changeHandler(e, state)}
-        name="email"
-      />
-      <Input
-        placeholder="enter your password"
-        type="password"
-        value={state.password}
-        onChange={(e) => changeHandler(e, state)}
-        name="password"
-      />
-      {type === "register" ? (
+      <div className="inputs-control">
         <Input
-          placeholder="repeat your password"
-          type="password"
-          value={state.repeatPass}
+          placeholder="enter your email"
+          type="text"
+          value={state.email}
           onChange={(e) => changeHandler(e, state)}
-          name="repeatPass"
+          name="email"
         />
-      ) : null}
+        <Input
+          placeholder="enter your password"
+          type="password"
+          value={state.password}
+          onChange={(e) => changeHandler(e, state)}
+          name="password"
+        />
+        {type === "register" ? (
+          <Input
+            placeholder="repeat your password"
+            type="password"
+            value={state.repeatPass}
+            onChange={(e) => changeHandler(e, state)}
+            name="repeatPass"
+          />
+        ) : null}
+      </div>
       {state.error ? <div className="error">{state.error}</div> : null}
       <div className="buttons-wrapper">
         <button
@@ -65,14 +67,12 @@ const generateTab = (
         >
           {type}
         </button>
-        <div className="or">or</div>
-        <Button
-          variant="contained"
-          size="medium"
+        <div
+          className="google-login"
           onClick={() => signInWithGoogle(navigation)}
         >
           Log in with Google
-        </Button>
+        </div>
       </div>
     </form>
   </div>
@@ -132,6 +132,14 @@ const Auth = () => {
               "login",
               setstate
             )}
+      </div>
+      <div className="auth-right">
+        <div className="auth-title">
+          Cryptocurrency Ultimate Market-Terminal
+        </div>
+      </div>
+      <div className="auth-image">
+        <BitcoinImage />
       </div>
     </div>
   );

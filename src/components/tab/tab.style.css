@@ -1,25 +1,20 @@
 .tab {
-    width: 50%;
+    width: 245px;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 35px;
+    height: 37px;
     text-transform: uppercase;
     color: #fff;
     cursor: pointer;
     text-align: center;
-    border-radius: 5px;
-}
-
-.tab:hover {
-    background-color: rgba(72, 64, 116, 0.515);
+    border-radius: 15px;
+    background: transparent;
+    color: #fff;
 }
 
 .active {
-    background: rgba(8, 8, 8, 0.6);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    backdrop-filter: blur(6.5px);
-    -webkit-backdrop-filter: blur(6.5px);
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: #000;
+    background: rgba(255, 253, 253, 0.96);
+    border: 2px solid #FFFFFF;
 }

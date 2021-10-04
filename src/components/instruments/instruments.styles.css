@@ -1,0 +1,10 @@
+.instruments {
+    border: 1px solid #000;
+    overflow: auto;
+    width: 100%;
+    background: linear-gradient(180deg, rgba(32, 15, 223, 0.65) 0%, rgba(78, 70, 220, 0.85) 57.44%, #44bd15 100%);
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 3;
+    grid-row-end: 4;
+}

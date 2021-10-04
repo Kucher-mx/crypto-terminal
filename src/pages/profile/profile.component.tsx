@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Header from "../../components/header/header.component";
 import Input from "../../components/input/input.component";
-import { auth, getDataByUserId, updateUserDoc } from "../../firebase/firebase";
+import { updateUserDoc } from "../../firebase/firebase";
 import "./profile.styles.css";
 
 const Profile = () => {

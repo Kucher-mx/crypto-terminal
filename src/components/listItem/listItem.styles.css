@@ -1,0 +1,36 @@
+.list-item-4 {
+    display: grid;
+    grid-template-columns: 50px 100px 100px 150px;
+    height: 35px;
+}
+
+.list-item-4-e {
+    display: grid;
+    grid-template-columns: 140px 80px 80px 100px;
+    height: 35px;
+}
+
+.list-item-3 {
+    display: grid;
+    grid-template-columns: 125px 125px 150px;
+    height: 35px;
+}
+
+.list-item-part {
+    padding-right: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+}
+
+.list-item-part::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    height: 100%;
+    width: 1px;
+    background-color: #000;
+    top: 50%;
+    transform: translateY(-50%);
+}
