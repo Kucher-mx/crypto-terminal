@@ -11,45 +11,27 @@ import Trades from "../../components/trades/trades.component";
 import "./main.styles.css";
 import OrderBook from "../../components/orderbook/orderbook.component";
 import Instruments from "../../components/instruments/instruments.component";
+import { coinType } from "../../types/redux.types";
 
 const Main = () => {
   const navigator = useNavigate();
   const dispatch = useDispatch();
 
-  // const getTrades = useCallback(async () => {
-  //   const response = await makeQuery(urls.trades);
-  //   dispatch(setTrades(response));
-  // }, [dispatch]);
-
   const getCoins = useCallback(() => {
     setInterval(async () => {
       const response = await makeQuery(urls.coins);
-      console.log(response);
+      const sortedResponse = Array.isArray(response)
+        ? response.sort((item1: coinType, item2: coinType) => {
+            if (item1.symbol < item2.symbol) return -1;
+            if (item1.symbol > item2.symbol) return 1;
+            return 0;
+          })
+        : response;
 
-      dispatch(
-        setCoins(
-          response.sort((item1: any, item2: any) => item1.symbol - item2.symbol)
-        )
-      );
+      if (Array.isArray(sortedResponse)) {
+        dispatch(setCoins(sortedResponse));
+      }
     }, 1000);
-  }, [dispatch]);
-
-  const getOrderBook = useCallback(async () => {
-    const response = await makeQuery(urls.orderBook);
-    dispatch(setOrderBook(response));
-  }, [dispatch]);
-
-  const coinsWebsocket = useCallback(() => {
-    const coinsWebSocket = new WebSocket(
-      // "wss://stream.binance.com:9443/ws/!miniTicker@arr"
-      "wss://stream.binance.com:9443/ws/!ticker@arr"
-    );
-
-    coinsWebSocket.onmessage = function (event: any) {
-      var coinsData = JSON.parse(event.data);
-
-      dispatch(setCoins(coinsData.slice(0)));
-    };
   }, [dispatch]);
 
   const tradesWebsocket = useCallback(() => {
@@ -77,20 +59,12 @@ const Main = () => {
   useEffect(() => {
     getCoins();
     tradesWebsocket();
-    // coinsWebsocket();
     orderBookWebsocket();
     const user = sessionStorage.getItem("userData");
     if (!user) {
       navigator("/auth");
     }
-  }, [
-    coinsWebsocket,
-    getCoins,
-    getOrderBook,
-    navigator,
-    orderBookWebsocket,
-    tradesWebsocket,
-  ]);
+  }, [getCoins, navigator, orderBookWebsocket, tradesWebsocket]);
 
   return (
     <div>

@@ -12,8 +12,10 @@
 
 .list-item-3 {
     display: grid;
-    grid-template-columns: 125px 125px 150px;
-    height: 35px;
+    grid-template-columns: 125px 120px 135px;
+    height: 37px;
+    box-sizing: border-box;
+    border-radius: 5px;
 }
 
 .list-item-part {
@@ -24,13 +26,28 @@
     position: relative;
 }
 
-.list-item-part::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    height: 100%;
-    width: 1px;
-    background-color: #000;
-    top: 50%;
-    transform: translateY(-50%);
+.orderbook-summary {
+    box-sizing: border-box;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    font-family: Roboto;
+    font-weight: bold;
+    line-height: 14px;
+    color: #D7D7D7;
+    padding-left: 25px;
+}
+
+.orderbook-summary-wrapper {
+    display: flex;
+    align-items: flex-end;
+}
+
+.orderbook-summary .main {
+    font-size: 20px;
+}
+
+.orderbook-summary .secondary {
+    font-size: 20px;
+    margin-left: 15px;
 }

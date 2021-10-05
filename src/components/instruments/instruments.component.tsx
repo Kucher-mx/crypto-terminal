@@ -16,7 +16,7 @@ const Instruments = () => {
         <ListItemPart title={"24h vol."} textColor={"#000"} />
         <ListItemPart title={"price"} textColor={"#000"} />
       </div>
-      <List items={coinsData} type="coins" />
+      {/* <List items={coinsData} type="coins" /> */}
     </div>
   );
 };

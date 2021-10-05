@@ -6,13 +6,16 @@ import "./list.styles.css";
 type Props = {
   items: any[];
   type: string;
+  color: {
+    text: string;
+  };
 };
 
-const List = ({ items, type }: Props) => {
+const List = ({ items, type, color }: Props) => {
   return (
     <div className="list">
-      {items.map((item) => (
-        <ListItem data={item} type={type} />
+      {items.map((item, idx) => (
+        <ListItem data={item} type={type} color={color} idx={idx} />
       ))}
     </div>
   );

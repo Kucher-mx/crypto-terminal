@@ -18,7 +18,7 @@ const Trades = () => {
         <ListItemPart title={"Size(USD)"} textColor={"#000"} />
         <ListItemPart title={"Date Time"} textColor={"#000"} />
       </div>
-      <List items={tradesData} type="trades" />
+      {/* <List items={tradesData} type="trades" /> */}
     </div>
   );
 };

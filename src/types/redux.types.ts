@@ -3,6 +3,25 @@ export type Action = {
   payload: any;
 };
 
+export type coinType = {
+  closeTime: number;
+  count: number;
+  firstId: number;
+  highPrice: string;
+  lastId: number;
+  lastPrice: string;
+  lastQty: string;
+  lowPrice: string;
+  openPrice: string;
+  openTime: number;
+  priceChange: string;
+  priceChangePercent: string;
+  quoteVolume: string;
+  symbol: string;
+  volume: string;
+  weightedAvgPrice: string;
+};
+
 export type StateType = {
   trades: {
     id: number;
@@ -12,7 +31,7 @@ export type StateType = {
     time: number;
     isBuyerMaker: boolean;
   }[];
-  coins: any[];
+  coins: coinType[];
   orderBook: {
     E: number;
     U: number;
