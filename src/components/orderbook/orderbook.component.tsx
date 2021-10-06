@@ -15,14 +15,15 @@ const OrderBook = () => {
   return (
     <div className="orderbook">
       {orderBookData.a.length ? (
-        <div className="orderbook-controls">
+        <>
+          <div className="orderbook-controls"></div>
           <div className="list-item-3">
             <ListItemPart title={"price"} textColor={"#B6B9C0"} />
             <ListItemPart title={"size"} textColor={"#B6B9C0"} />
             <ListItemPart title={"total"} textColor={"#B6B9C0"} />
           </div>
           <List
-            items={a.filter((item) => Number(item[1]) !== 0).slice(0, 8)}
+            items={a.filter((item) => Number(item[1]) !== 0).slice(0, 5)}
             type="orderbook"
             color={{ text: "#EF5350" }}
           />
@@ -33,11 +34,11 @@ const OrderBook = () => {
             </div>
           </div>
           <List
-            items={a.filter((item) => Number(item[1]) !== 0).slice(0, 8)}
+            items={b.filter((item) => Number(item[1]) !== 0).slice(0, 5)}
             type="orderbook"
             color={{ text: "#5ABD2B" }}
-          />{" "}
-        </div>
+          />
+        </>
       ) : (
         <Loader
           type="Puff"

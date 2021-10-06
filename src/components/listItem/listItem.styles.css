@@ -1,24 +1,26 @@
 .list-item-4 {
     display: grid;
-    grid-template-columns: 50px 100px 100px 150px;
+    grid-template-columns: 13% 25% 25% 37%;
     height: 35px;
 }
 
 .list-item-4-e {
     display: grid;
-    grid-template-columns: 140px 80px 80px 100px;
+    grid-template-columns: 2fr 1.3fr 1.3fr 1.5fr;
     height: 35px;
 }
 
 .list-item-3 {
+    width: 100%;
     display: grid;
-    grid-template-columns: 125px 120px 135px;
+    grid-template-columns: 1fr 0.7fr 1fr;
     height: 37px;
     box-sizing: border-box;
     border-radius: 5px;
 }
 
 .list-item-part {
+    width: 100%;
     padding-right: 10px;
     display: flex;
     justify-content: flex-end;
@@ -28,14 +30,14 @@
 
 .orderbook-summary {
     box-sizing: border-box;
-    min-height: 60px;
+    min-height: 50px;
     display: flex;
     align-items: center;
     font-family: Roboto;
     font-weight: bold;
     line-height: 14px;
     color: #D7D7D7;
-    padding-left: 25px;
+    margin: 0 auto;
 }
 
 .orderbook-summary-wrapper {
@@ -50,4 +52,16 @@
 .orderbook-summary .secondary {
     font-size: 20px;
     margin-left: 15px;
+}
+
+@media screen and (min-width: 1440px) {
+
+    .orderbook-summary .main,
+    .orderbook-summary .secondary {
+        font-size: 14px;
+    }
+
+    .list-item-part {
+        font-size: 12px;
+    }
 }
