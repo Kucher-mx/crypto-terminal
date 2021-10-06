@@ -67,14 +67,14 @@ const Main = () => {
   }, [getCoins, navigator, orderBookWebsocket, tradesWebsocket]);
 
   return (
-    <div>
+    <>
       <Header />
       <div className="main-content">
         <Instruments />
         <OrderBook />
         <Trades />
       </div>
-    </div>
+    </>
   );
 };
 
