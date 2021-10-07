@@ -16,7 +16,6 @@ const OrderBook = () => {
   const { height } = useWindowDimensions();
 
   const itemsAmount = Math.floor(((height - 60) * 32) / 100 / 35);
-  console.log("itemsAmount", itemsAmount);
 
   return (
     <div className="orderbook">
@@ -28,7 +27,7 @@ const OrderBook = () => {
             <ListItemPart title={"size"} textColor={"#B6B9C0"} />
             <ListItemPart title={"total"} textColor={"#B6B9C0"} />
           </div>
-          <div className="orderbook-wrapper">
+          <div className="list-wrapper">
             <List
               items={a
                 .filter((item) => Number(item[1]) !== 0)

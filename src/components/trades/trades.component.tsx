@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { StateType } from "../../types/redux.types";
 import List from "../list/list.component";
 import ListItemPart from "../listItem/listItemPart.component";
+import Title from "../title/title.component";
 
 import "./trades.styles.css";
 
@@ -11,14 +12,23 @@ const Trades = () => {
 
   return (
     <div className="trades">
+      <Title title="Trades" />
       <div className="trades-controls"></div>
       <div className="list-item-4">
-        <ListItemPart title={"Side"} textColor={"#000"} />
-        <ListItemPart title={"Price"} textColor={"#000"} />
-        <ListItemPart title={"Size(USD)"} textColor={"#000"} />
-        <ListItemPart title={"Date Time"} textColor={"#000"} />
+        <ListItemPart title={"Side"} textColor={"#B6B9C0"} />
+        <ListItemPart title={"Price"} textColor={"#B6B9C0"} />
+        <ListItemPart title={"Size(USD)"} textColor={"#B6B9C0"} />
+        <ListItemPart title={"Date Time"} textColor={"#B6B9C0"} />
       </div>
-      {/* <List items={tradesData} type="trades" /> */}
+      <div className="list-wrapper">
+        <List
+          items={tradesData}
+          type="trades"
+          color={{
+            text: "#fff",
+          }}
+        />
+      </div>
     </div>
   );
 };

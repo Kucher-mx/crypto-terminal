@@ -13,27 +13,50 @@ type Props = {
 };
 
 const ListItem = ({ data, type, color, idx }: Props) => {
+  const options: {
+    month: "short";
+    day: "numeric";
+    hour: "numeric";
+    minute: "numeric";
+    second: "numeric";
+    hour12: false;
+  } = {
+    day: "numeric",
+    month: "short",
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
+    hour12: false,
+  };
+  const formatDate = new Intl.DateTimeFormat("en-US", options);
+
   let renderEl;
   if (type === "trades") {
-    renderEl = null;
-    // (
-    //   <div className="list-item-4">
-    //     <ListItemPart title={data.m ? "buy" : "sale"} textColor={"#c01c7c"} />
-    //     <ListItemPart title={data.p} textColor={"#c01c7c"} />
-    //     <ListItemPart title={data.q} textColor={"#c01c7c"} />
-    //     <ListItemPart title={data.T.toString()} textColor={"#c01c7c"} />
-    //   </div>
-    // );
+    const textColor = data.m ? "#5ABD2B" : "#EF5350";
+    renderEl = (
+      <div
+        className="list-item-4"
+        style={{
+          background:
+            idx % 2 !== 0 ? "rgba(255, 255, 255, 0.1)" : "transparent",
+        }}
+      >
+        <ListItemPart title={data.m ? "buy" : "sale"} textColor={textColor} />
+        <ListItemPart title={Number(data.p).toFixed(3)} textColor={textColor} />
+        <ListItemPart title={Number(data.q).toFixed(6)} textColor={textColor} />
+        <ListItemPart title={formatDate.format(data.T)} textColor={textColor} />
+      </div>
+    );
   } else if (type === "coins") {
-    renderEl = null;
-    // (
-    //   <div className="list-item-4-e">
-    //     <ListItemPart title={data.symbol} textColor={"#c01c7c"} />
-    //     <ListItemPart title={data.priceChange} textColor={"#c01c7c"} />
-    //     <ListItemPart title={data.priceChangePercent} textColor={"#c01c7c"} />
-    //     <ListItemPart title={data.lastPrice} textColor={"#c01c7c"} />
-    //   </div>
-    // );
+    const textColor = data.priceChange > 0 ? "#5ABD2B" : "#EF5350";
+    renderEl = (
+      <div className="list-item-4-e">
+        <ListItemPart title={data.symbol} textColor={"#D3D3D3"} />
+        <ListItemPart title={data.priceChange} textColor={textColor} />
+        <ListItemPart title={data.priceChangePercent} textColor={"#D3D3D3"} />
+        <ListItemPart title={data.lastPrice} textColor={textColor} />
+      </div>
+    );
   } else if (type === "orderbook") {
     renderEl = (
       <div

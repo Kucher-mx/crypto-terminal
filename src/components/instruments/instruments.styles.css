@@ -1,10 +1,22 @@
 .instruments {
-    border: 1px solid #000;
-    overflow: auto;
     width: 100%;
-    background: linear-gradient(180deg, rgba(32, 15, 223, 0.65) 0%, rgba(78, 70, 220, 0.85) 57.44%, #44bd15 100%);
+    background: linear-gradient(210.96deg, rgba(36, 33, 81, 0.296) 0.01%, rgba(38, 35, 83, 0.312) 24.03%, rgba(28, 26, 64, 0.204) 104.81%);
+    box-shadow: -29px 60px 90px rgba(23, 18, 43, 0.55);
+    backdrop-filter: blur(25px);
+    border-radius: 10px;
     grid-column-start: 3;
     grid-column-end: 4;
     grid-row-start: 3;
     grid-row-end: 4;
+}
+
+.instruments-wrapper {
+    width: 100%;
+    height: calc(100% - 60px);
+    overflow: scroll;
+}
+
+.instruments-list-header {
+    background: rgba(255, 255, 255, 0.1);
+    margin-top: 5px;
 }

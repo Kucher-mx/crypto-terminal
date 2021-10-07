@@ -2,13 +2,16 @@
     display: grid;
     grid-template-columns: 13% 25% 25% 37%;
     height: 35px;
+    border-radius: 5px
 }
 
 .list-item-4-e {
     display: grid;
     grid-template-columns: 2fr 1.3fr 1.3fr 1.5fr;
     height: 35px;
+
 }
+
 
 .list-item-3 {
     width: 100%;

@@ -57,8 +57,8 @@ const Main = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    // getCoins();
-    // tradesWebsocket();
+    getCoins();
+    tradesWebsocket();
     orderBookWebsocket();
     const user = sessionStorage.getItem("userData");
     if (!user) {
