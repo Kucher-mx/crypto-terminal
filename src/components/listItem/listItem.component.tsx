@@ -25,15 +25,14 @@ const ListItem = ({ data, type, color, idx }: Props) => {
     //   </div>
     // );
   } else if (type === "coins") {
-    renderEl = null;
-    // (
-    //   <div className="list-item-4-e">
-    //     <ListItemPart title={data.symbol} textColor={"#c01c7c"} />
-    //     <ListItemPart title={data.priceChange} textColor={"#c01c7c"} />
-    //     <ListItemPart title={data.priceChangePercent} textColor={"#c01c7c"} />
-    //     <ListItemPart title={data.lastPrice} textColor={"#c01c7c"} />
-    //   </div>
-    // );
+    renderEl = (
+      <div className="list-item-4-e">
+        <ListItemPart title={data.symbol} textColor={"#c01c7c"} />
+        <ListItemPart title={data.priceChange} textColor={"#c01c7c"} />
+        <ListItemPart title={data.priceChangePercent} textColor={"#c01c7c"} />
+        <ListItemPart title={data.lastPrice} textColor={"#c01c7c"} />
+      </div>
+    );
   } else if (type === "orderbook") {
     renderEl = (
       <div

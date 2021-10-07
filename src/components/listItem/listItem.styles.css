@@ -8,7 +8,9 @@
     display: grid;
     grid-template-columns: 2fr 1.3fr 1.3fr 1.5fr;
     height: 35px;
+
 }
+
 
 .list-item-3 {
     width: 100%;

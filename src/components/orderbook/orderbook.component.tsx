@@ -16,7 +16,6 @@ const OrderBook = () => {
   const { height } = useWindowDimensions();
 
   const itemsAmount = Math.floor(((height - 60) * 32) / 100 / 35);
-  console.log("itemsAmount", itemsAmount);
 
   return (
     <div className="orderbook">
