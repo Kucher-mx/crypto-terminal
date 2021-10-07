@@ -1,5 +1,6 @@
 .orderbook {
     padding: 0 10px;
+    padding-top: 10px;
     overflow: auto;
     width: 100%;
     /* background: linear-gradient(210.96deg, rgba(36, 33, 81, 0.296) 0.01%, rgba(54, 51, 102, 0.312) 14.75%, rgba(28, 26, 64, 0.204) 104.81%); */
@@ -11,6 +12,47 @@
     grid-row-end: 3;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
+}
+
+.orderbook-wrapper {
+    width: 100%;
+    overflow: auto;
+}
+
+.orderbook-summary {
+    box-sizing: border-box;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Roboto;
+    font-weight: bold;
+    line-height: 14px;
+    color: #D7D7D7;
+    margin: 0 auto;
+}
+
+.orderbook-summary-wrapper {
+    display: flex;
+    align-items: flex-end;
+}
+
+.orderbook-summary .main {
+    font-size: 20px;
+}
+
+.orderbook-summary .secondary {
+    font-size: 20px;
+    margin-left: 15px;
+}
+
+@media screen and (min-width: 1440px) {
+
+    .orderbook-summary .main,
+    .orderbook-summary .secondary {
+        font-size: 14px;
+    }
+
 }

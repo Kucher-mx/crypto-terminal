@@ -14,7 +14,7 @@
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 0.7fr 1fr;
-    height: 37px;
+    height: 35px;
     box-sizing: border-box;
     border-radius: 5px;
 }
@@ -28,31 +28,6 @@
     position: relative;
 }
 
-.orderbook-summary {
-    box-sizing: border-box;
-    min-height: 50px;
-    display: flex;
-    align-items: center;
-    font-family: Roboto;
-    font-weight: bold;
-    line-height: 14px;
-    color: #D7D7D7;
-    margin: 0 auto;
-}
-
-.orderbook-summary-wrapper {
-    display: flex;
-    align-items: flex-end;
-}
-
-.orderbook-summary .main {
-    font-size: 20px;
-}
-
-.orderbook-summary .secondary {
-    font-size: 20px;
-    margin-left: 15px;
-}
 
 @media screen and (min-width: 1440px) {
 
