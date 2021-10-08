@@ -32,7 +32,8 @@ const ListItem = ({ data, type, color, idx }: Props) => {
 
   let renderEl;
   if (type === "trades") {
-    const textColor = data.m ? "#5ABD2B" : "#EF5350";
+    const textColor = data.isBuyerMaker ? "#5ABD2B" : "#EF5350";
+
     renderEl = (
       <div
         className="list-item-4"
@@ -41,10 +42,26 @@ const ListItem = ({ data, type, color, idx }: Props) => {
             idx % 2 !== 0 ? "rgba(255, 255, 255, 0.1)" : "transparent",
         }}
       >
-        <ListItemPart title={data.m ? "buy" : "sale"} textColor={textColor} />
+        {/* <ListItemPart title={data.m ? "buy" : "sale"} textColor={textColor} />
         <ListItemPart title={Number(data.p).toFixed(3)} textColor={textColor} />
         <ListItemPart title={Number(data.q).toFixed(6)} textColor={textColor} />
-        <ListItemPart title={formatDate.format(data.T)} textColor={textColor} />
+        <ListItemPart title={formatDate.format(data.T)} textColor={textColor} /> */}
+        <ListItemPart
+          title={data.isBuyerMaker ? "buy" : "sale"}
+          textColor={textColor}
+        />
+        <ListItemPart
+          title={Number(data.price).toFixed(3)}
+          textColor={textColor}
+        />
+        <ListItemPart
+          title={Number(data.qty).toFixed(6)}
+          textColor={textColor}
+        />
+        <ListItemPart
+          title={formatDate.format(data.time)}
+          textColor={textColor}
+        />
       </div>
     );
   } else if (type === "coins") {

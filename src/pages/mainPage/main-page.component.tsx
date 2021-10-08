@@ -56,10 +56,19 @@ const Main = () => {
     };
   }, [dispatch]);
 
+  const getTrades = useCallback(() => {
+    setInterval(async () => {
+      const response = await makeQuery(urls.trades);
+
+      dispatch(setTrades(response[0]));
+    }, 3000);
+  }, [dispatch]);
+
   useEffect(() => {
-    getCoins();
-    tradesWebsocket();
-    orderBookWebsocket();
+    getTrades();
+    // getCoins();
+    // tradesWebsocket();
+    // orderBookWebsocket();
     const user = sessionStorage.getItem("userData");
     if (!user) {
       navigator("/auth");

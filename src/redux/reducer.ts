@@ -13,8 +13,11 @@ const rootReducer = (state = initialState, action: any) => {
       // need to extract this codein lvl upper
       const newTrades =
         state.trades.length < 50
-          ? [...state.trades, action.payload]
+          ? [action.payload, ...state.trades]
           : [action.payload, ...state.trades.slice(0, 49)];
+      console.log("action", action.payload);
+      console.log("newTrades", newTrades);
+
       return {
         ...state,
         trades: newTrades,

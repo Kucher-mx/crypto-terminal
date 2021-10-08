@@ -15,7 +15,7 @@ const List = ({ items, type, color }: Props) => {
   return (
     <div className="list">
       {items.map((item, idx) => (
-        <ListItem data={item} type={type} color={color} idx={idx} />
+        <ListItem data={item} type={type} color={color} idx={idx} key={idx} />
       ))}
     </div>
   );
