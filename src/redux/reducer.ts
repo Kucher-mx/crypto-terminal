@@ -11,10 +11,12 @@ const rootReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case actionTypes.SET_TRADES:
       // need to extract this codein lvl upper
-      const newTrades =
-        state.trades.length < 50
+      const newTrades = Boolean(action.payload)
+        ? state.trades.length < 30
           ? [action.payload, ...state.trades]
-          : [action.payload, ...state.trades.slice(0, 49)];
+          : [action.payload, ...state.trades.slice(0, 29)]
+        : [];
+      console.log(newTrades);
 
       return {
         ...state,

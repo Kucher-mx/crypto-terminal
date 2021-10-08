@@ -52,7 +52,7 @@ const Main = () => {
 
     orderBookWebSocket.onmessage = function (event: any) {
       var orderBookData = JSON.parse(event.data);
-      dispatch(setOrderBook(orderBookData));
+      setInterval(() => dispatch(setOrderBook(orderBookData)), 1000);
     };
   }, [dispatch]);
 
@@ -61,19 +61,19 @@ const Main = () => {
       const response = await makeQuery(urls.trades);
 
       dispatch(setTrades(response[0]));
-    }, 3000);
+    }, 1500);
   }, [dispatch]);
 
   useEffect(() => {
-    getTrades();
+    // getTrades();
     // getCoins();
-    // tradesWebsocket();
-    // orderBookWebsocket();
+    tradesWebsocket();
+    orderBookWebsocket();
     const user = sessionStorage.getItem("userData");
     if (!user) {
       navigator("/auth");
     }
-  }, [getCoins, navigator, orderBookWebsocket, tradesWebsocket]);
+  }, [getCoins, getTrades, navigator, orderBookWebsocket, tradesWebsocket]);
 
   return (
     <>

@@ -1,5 +1,5 @@
 export const urls = {
-  trades: "https://fapi.binance.com/fapi/v1/trades?symbol=BTCUSDT",
+  trades: "https://fapi.binance.com/fapi/v1/aggTrades?symbol=BTCUSDT",
   coins: "https://www.binance.com/fapi/v1/ticker/24hr",
   orderBook: "https://fapi.binance.com/fapi/v1/depth?symbol=BTCUSDT",
 };

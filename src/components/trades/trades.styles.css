@@ -14,6 +14,7 @@
 
 .trades-controls {
     padding: 10px;
+    position: relative;
 }
 
 .rangeValues {
@@ -106,4 +107,22 @@ section.range-slider input:last-of-type::-moz-range-track {
 
 section.range-slider input[type=range]::-moz-focus-outer {
     border: 0;
+}
+
+.trades-select {
+    height: 22px;
+    background: transparent;
+    position: absolute;
+    right: 10px;
+    top: -20px;
+    width: 70px;
+    color: #eeeeee;
+    border: 2px solid rgba(255, 255, 255, 0.08);
+    border-radius: 5px;
+    font-size: 11px;
+    text-transform: capitalize;
+}
+
+.trades-select:focus {
+    outline: none;
 }

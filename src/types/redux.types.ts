@@ -24,12 +24,19 @@ export type coinType = {
 
 export type StateType = {
   trades: {
-    id: number;
-    price: string;
-    qty: string;
-    quoteQty: string;
-    time: number;
-    isBuyerMaker: boolean;
+    // id: number;
+    // price: string;
+    // qty: string;
+    // quoteQty: string;
+    // time: number;
+    // isBuyerMaker: boolean;
+    a: number;
+    p: string;
+    q: string;
+    f: number;
+    l: number;
+    T: 1498793709153;
+    m: boolean;
   }[];
   coins: coinType[];
   orderBook: {
