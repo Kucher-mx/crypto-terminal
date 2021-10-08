@@ -9,33 +9,32 @@ import "./trades.styles.css";
 
 const Trades = () => {
   const tradesData = useSelector((state: StateType) => state.trades);
-  const maxPrice = useMemo(
+
+  const maxSize = useMemo(
     () =>
       tradesData.length
-        ? Math.max(...tradesData.map((item) => Number(item.price)))
+        ? Math.max(...tradesData.map((item) => Number(item.qty))) + 0.1
         : 0,
     [tradesData]
   );
 
-  const minPrice = useMemo(() => (maxPrice / 100) * 50, [maxPrice]);
-
   const [filterValues, setFilterValues] = useState({
-    min: minPrice,
-    max: maxPrice,
+    min: 0,
+    max: maxSize,
   });
+
+  console.log(filterValues, maxSize);
 
   const filteredData = useMemo(
     () =>
       tradesData.filter(
-        (item) =>
-          +item.price > filterValues.min && +item.price < filterValues.max
+        (item) => +item.qty > filterValues.min && +item.qty < filterValues.max
       ),
     [tradesData, filterValues]
   );
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    console.log(name, value);
 
     setFilterValues({
       ...filterValues,
@@ -48,13 +47,14 @@ const Trades = () => {
       <Title title="Trades" />
       <div className="trades-controls">
         <section className="range-slider">
+          <div className="range-title">size</div>
           <span className="rangeValues min">{filterValues.min}</span>
           <input
             name="min"
             value={filterValues.min}
             min="0"
-            max={maxPrice - 1}
-            step="0.5"
+            max={maxSize - 0.01}
+            step="0.01"
             type="range"
             onChange={onChangeHandler}
           />
@@ -62,8 +62,8 @@ const Trades = () => {
             name="max"
             value={filterValues.max}
             min="0"
-            max={maxPrice}
-            step="0.5"
+            max={maxSize}
+            step="0.01"
             type="range"
             onChange={onChangeHandler}
           />

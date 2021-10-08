@@ -15,8 +15,6 @@ const rootReducer = (state = initialState, action: any) => {
         state.trades.length < 50
           ? [action.payload, ...state.trades]
           : [action.payload, ...state.trades.slice(0, 49)];
-      console.log("action", action.payload);
-      console.log("newTrades", newTrades);
 
       return {
         ...state,
