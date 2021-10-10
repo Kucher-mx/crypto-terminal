@@ -23,12 +23,12 @@ const TradesListItem = ({ data, idx, sizeType }: Props) => {
       }}
     >
       <ListItemPart title={data.m ? "buy" : "sale"} textColor={textColor} />
-      <ListItemPart title={Number(data.p).toFixed(3)} textColor={textColor} />
+      <ListItemPart title={Number(data.p).toFixed(2)} textColor={textColor} />
       <ListItemPart
         title={
           sizeType === "COIN"
             ? Number(data.q).toFixed(6)
-            : Number(data.q).toFixed(6) + "qt"
+            : Number(data.q * data.p).toFixed(2)
         }
         textColor={textColor}
       />
