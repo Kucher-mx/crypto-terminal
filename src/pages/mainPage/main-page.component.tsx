@@ -12,68 +12,40 @@ import "./main.styles.css";
 import OrderBook from "../../components/orderbook/orderbook.component";
 import Instruments from "../../components/instruments/instruments.component";
 import { coinType } from "../../types/redux.types";
+const Binance = require("node-binance-api");
 
 const Main = () => {
   const navigator = useNavigate();
   const dispatch = useDispatch();
 
-  const getCoins = useCallback(() => {
-    setInterval(async () => {
-      const response = await makeQuery(urls.coins);
-      const sortedResponse = Array.isArray(response)
-        ? response.sort((item1: coinType, item2: coinType) => {
-            if (item1.symbol < item2.symbol) return -1;
-            if (item1.symbol > item2.symbol) return 1;
-            return 0;
-          })
-        : response;
-
-      if (Array.isArray(sortedResponse)) {
-        dispatch(setCoins(sortedResponse));
-      }
-    }, 1000);
-  }, [dispatch]);
-
-  const tradesWebsocket = useCallback(() => {
-    const tradesWebSocket = new WebSocket(
-      "wss://stream.binance.com:9443/ws/btcusdt@aggTrade"
-    );
-
-    tradesWebSocket.onmessage = function (event: any) {
-      var tradesData = JSON.parse(event.data);
-      dispatch(setTrades(tradesData));
-    };
-  }, [dispatch]);
-
-  const orderBookWebsocket = useCallback(() => {
-    const orderBookWebSocket = new WebSocket(
-      "wss://stream.binance.com:9443/ws/btcusdt@depth"
-    );
-
-    orderBookWebSocket.onmessage = function (event: any) {
-      var orderBookData = JSON.parse(event.data);
-      setInterval(() => dispatch(setOrderBook(orderBookData)), 1000);
-    };
-  }, [dispatch]);
-
-  const getTrades = useCallback(() => {
-    setInterval(async () => {
-      const response = await makeQuery(urls.trades);
-
-      dispatch(setTrades(response[0]));
-    }, 1500);
-  }, [dispatch]);
-
   useEffect(() => {
-    // getTrades();
-    // getCoins();
-    tradesWebsocket();
-    orderBookWebsocket();
+    const options = {
+      method: "SUBSCRIBE",
+      params: ["btcusdt@aggTrade", "btcusdt@depth", "!ticker@arr"],
+      id: 1,
+    };
+    const webSocket = new WebSocket("wss://fstream.binance.com/ws");
+    webSocket.onopen = function (event) {
+      webSocket.send(JSON.stringify(options));
+    };
+
+    webSocket.onmessage = (e) => {
+      const data = JSON.parse(e.data);
+
+      if (data.e === "aggTrade") {
+        dispatch(setTrades(data));
+      } else if (data.e === "depthUpdate") {
+        dispatch(setOrderBook(data));
+      } else if (Array.isArray(data)) {
+        dispatch(setCoins(data));
+      }
+    };
+
     const user = sessionStorage.getItem("userData");
     if (!user) {
       navigator("/auth");
     }
-  }, [getCoins, getTrades, navigator, orderBookWebsocket, tradesWebsocket]);
+  }, [dispatch, navigator]);
 
   return (
     <>

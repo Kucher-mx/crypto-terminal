@@ -66,7 +66,7 @@ const Trades = () => {
           <option value="COIN">COIN</option>
           <option value="USDT">USDT</option>
         </select>
-        <section className="range-slider">
+        {/* <section className="range-slider">
           <div className="range-title">size</div>
           <span className="rangeValues min">{filterValues.min}</span>
           <input
@@ -88,7 +88,7 @@ const Trades = () => {
             onChange={onChangeHandler}
           />
           <span className="rangeValues max">{filterValues.max}</span>
-        </section>
+        </section> */}
       </div>
       <div className="list-item-4">
         <ListItemPart title={"Side"} textColor={"#B6B9C0"} />

@@ -12,3 +12,19 @@ export const firebaseConfig = {
   appId: "1:240452210237:web:f1bc9955c88205f6332454",
   measurementId: "G-41L4YQC7Y7",
 };
+
+export const DataFormatOptions: {
+  month: "short";
+  day: "numeric";
+  hour: "numeric";
+  minute: "numeric";
+  second: "numeric";
+  hour12: false;
+} = {
+  day: "numeric",
+  month: "short",
+  hour: "numeric",
+  minute: "numeric",
+  second: "numeric",
+  hour12: false,
+};
