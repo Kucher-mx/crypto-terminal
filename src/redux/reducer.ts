@@ -7,13 +7,14 @@ const initialState: StateType = {
   trades: [],
   coins: [],
   orderBook: { E: 0, U: 0, e: "", s: "", u: 0, b: [], a: [], T: 0 },
+  candleStick: [],
 };
 
 const rootReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case actionTypes.SET_TRADES:
       // need to extract this codein lvl upper
-      if (state.trades.length && action.payload.T > state.trades[0].T + 500) {
+      if (state.trades.length && action.payload.T > state.trades[0].T + 550) {
         const newTrades =
           state.trades.length < 30
             ? [action.payload, ...state.trades]
@@ -45,11 +46,21 @@ const rootReducer = (state = initialState, action: any) => {
       };
     case actionTypes.SET_COINS:
       const newCoins = mergeCoins(state.coins, action.payload, "s");
-      console.log(newCoins);
 
       return {
         ...state,
         coins: newCoins,
+      };
+
+    case actionTypes.SET_CANDLESTICK:
+      const { t, o, h, l, c } = action.payload;
+
+      return {
+        ...state,
+        candleStick: [
+          ...state.candleStick,
+          { x: t, y: [Number(o), Number(h), Number(l), Number(c)] },
+        ],
       };
     default:
       return state;

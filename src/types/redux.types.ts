@@ -52,4 +52,5 @@ export type StateType = {
   trades: TradesType[];
   coins: any[];
   orderBook: OrderbookType;
+  candleStick: any;
 };

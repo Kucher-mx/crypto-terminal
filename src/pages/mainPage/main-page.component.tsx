@@ -1,32 +1,30 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router";
 import Header from "../../components/header/header.component";
-import { makeQuery } from "../../helpers/query.utils";
 import { useDispatch } from "react-redux";
-import { setCoins, setOrderBook, setTrades } from "../../redux/actions";
+import {
+  setCandleStick,
+  setCoins,
+  setOrderBook,
+  setTrades,
+} from "../../redux/actions";
 
-import { urls } from "../../consts/urls";
 import Trades from "../../components/trades/trades.component";
 
 import "./main.styles.css";
 import OrderBook from "../../components/orderbook/orderbook.component";
 import Instruments from "../../components/instruments/instruments.component";
-import { coinType } from "../../types/redux.types";
-const Binance = require("node-binance-api");
+import { websocketGetterOptions } from "../../consts/consts";
+import Chart from "../../components/chart/chart.components";
 
 const Main = () => {
   const navigator = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const options = {
-      method: "SUBSCRIBE",
-      params: ["btcusdt@aggTrade", "btcusdt@depth", "!ticker@arr"],
-      id: 1,
-    };
     const webSocket = new WebSocket("wss://fstream.binance.com/ws");
     webSocket.onopen = function (event) {
-      webSocket.send(JSON.stringify(options));
+      webSocket.send(JSON.stringify(websocketGetterOptions));
     };
 
     webSocket.onmessage = (e) => {
@@ -38,6 +36,8 @@ const Main = () => {
         dispatch(setOrderBook(data));
       } else if (Array.isArray(data)) {
         dispatch(setCoins(data));
+      } else if (data.e === "kline") {
+        dispatch(setCandleStick(data.k));
       }
     };
 
@@ -54,6 +54,7 @@ const Main = () => {
         <Instruments />
         <OrderBook />
         <Trades />
+        {/* <Chart /> */}
       </div>
     </>
   );

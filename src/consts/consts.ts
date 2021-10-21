@@ -1,3 +1,5 @@
+import { MainChartType } from "../types/chartType";
+
 export const apiKey =
   "1008a3c84b15c627d7cc40dd87b02ec574b70551ccf70144c62c2707ea6ad795";
 export const apiKeySecret =
@@ -27,4 +29,114 @@ export const DataFormatOptions: {
   minute: "numeric",
   second: "numeric",
   hour12: false,
+};
+
+export const websocketGetterOptions = {
+  method: "SUBSCRIBE",
+  params: ["btcusdt@aggTrade", "btcusdt@depth", "!ticker@arr", "btcusdt@kline"],
+  // params: ["btcusdt@kline_1m"],
+  id: 1,
+};
+
+export const candleStickOptions: MainChartType = {
+  series: [
+    {
+      data: [],
+      name: "volume",
+    },
+  ],
+  options: {
+    chart: {
+      type: "candlestick",
+      height: 290,
+      id: "candles",
+      toolbar: {
+        autoSelected: "pan",
+        show: false,
+      },
+      zoom: {
+        enabled: false,
+      },
+    },
+    plotOptions: {
+      candlestick: {
+        colors: {
+          upward: "#3C90EB",
+          downward: "#DF7D46",
+        },
+      },
+    },
+    xaxis: {
+      type: "datetime",
+    },
+  },
+};
+
+export const candleStickBarOptions = {
+  seriesBar: [
+    {
+      name: "volume",
+      data: candleStickOptions.series[0].data,
+    },
+  ],
+  optionsBar: {
+    chart: {
+      height: 160,
+      type: "bar",
+      brush: {
+        enabled: true,
+        target: "candles",
+      },
+      selection: {
+        enabled: true,
+        // xaxis: {
+        //   min: new Date('20 Jan 2017').getTime(),
+        //   max: new Date('10 Dec 2017').getTime()
+        // },
+        fill: {
+          color: "#ccc",
+          opacity: 0.4,
+        },
+        stroke: {
+          color: "#0D47A1",
+        },
+      },
+    },
+    dataLabels: {
+      enabled: false,
+    },
+    plotOptions: {
+      bar: {
+        columnWidth: "80%",
+        colors: {
+          ranges: [
+            {
+              from: -1000,
+              to: 0,
+              color: "#F15B46",
+            },
+            {
+              from: 1,
+              to: 10000,
+              color: "#FEB019",
+            },
+          ],
+        },
+      },
+    },
+    stroke: {
+      width: 0,
+    },
+    xaxis: {
+      type: "datetime",
+      axisBorder: {
+        offsetX: 13,
+      },
+    },
+    yaxis: {
+      labels: {
+        show: false,
+      },
+    },
+  },
 };

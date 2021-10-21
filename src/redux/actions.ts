@@ -20,3 +20,10 @@ export const setOrderBook = (payload: any) => {
     payload,
   };
 };
+
+export const setCandleStick = (payload: any) => {
+  return {
+    type: actionTypes.SET_CANDLESTICK,
+    payload,
+  };
+};

@@ -1,5 +1,4 @@
 import React from "react";
-import ListItemPart from "./listItemPart.component";
 
 import "./listItem.styles.css";
 import CoinsListItem from "./coins-listItem.component";
@@ -22,8 +21,6 @@ const ListItem = ({ data, type, color, idx, sizeType }: Props) => {
       <TradesListItem data={data} idx={idx} color={color} sizeType={sizeType} />
     );
   } else if (type === "coins") {
-    console.log("coins LI", data);
-
     return <CoinsListItem data={data} />;
   } else {
     return <OBListItem data={data} idx={idx} color={color} />;
