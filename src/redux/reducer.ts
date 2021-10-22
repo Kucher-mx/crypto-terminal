@@ -7,7 +7,18 @@ const initialState: StateType = {
   trades: [],
   coins: [],
   orderBook: { E: 0, U: 0, e: "", s: "", u: 0, b: [], a: [], T: 0 },
-  candleStick: [],
+  candleStick: [
+    {
+      Time: Date.now(),
+      Date: new Date(Date.now()).toDateString(),
+      Label: "label",
+      Close: 0,
+      Open: 0,
+      High: 0,
+      Low: 0,
+      Volume: 0,
+    },
+  ],
   coinsSortProps: {
     field: "s",
     key: false,
@@ -64,14 +75,22 @@ const rootReducer = (state = initialState, action: any) => {
       };
 
     case actionTypes.SET_CANDLESTICK:
-      const { t, o, h, l, c } = action.payload;
+      const { t, o, h, l, c, v } = action.payload;
+
+      const newEl = {
+        Time: new Date(t),
+        Date: new Date(t).toDateString(),
+        Label: "label",
+        Close: Number(c),
+        Open: Number(o),
+        High: Number(h),
+        Low: Number(l),
+        Volume: Number(v),
+      };
 
       return {
         ...state,
-        candleStick: [
-          ...state.candleStick,
-          { x: t, y: [Number(o), Number(h), Number(l), Number(c)] },
-        ],
+        candleStick: [...state.candleStick, newEl],
       };
     default:
       return state;

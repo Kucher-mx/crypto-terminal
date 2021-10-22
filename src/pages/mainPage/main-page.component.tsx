@@ -54,7 +54,7 @@ const Main = () => {
         <Instruments />
         <OrderBook />
         <Trades />
-        {/* <Chart /> */}
+        <Chart />
       </div>
     </>
   );
