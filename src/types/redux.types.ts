@@ -53,4 +53,8 @@ export type StateType = {
   coins: any[];
   orderBook: OrderbookType;
   candleStick: any;
+  coinsSortProps: {
+    field: string;
+    key: boolean;
+  };
 };

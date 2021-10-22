@@ -14,6 +14,13 @@ export const setCoins = (payload: any) => {
   };
 };
 
+export const setCoinsSort = (payload: any) => {
+  return {
+    type: actionTypes.SET_COINS_SORT,
+    payload,
+  };
+};
+
 export const setOrderBook = (payload: any) => {
   return {
     type: actionTypes.SET_ORDERBOOK,

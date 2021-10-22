@@ -10,9 +10,9 @@ const CoinsListItem = ({ data }: Props) => {
   return (
     <div className="list-item-4-e">
       <ListItemPart title={data.s} textColor={"#D3D3D3"} />
-      <ListItemPart title={data.P} textColor={textColor} />
-      <ListItemPart title={data.q} textColor={"#D3D3D3"} />
       <ListItemPart title={data.c} textColor={textColor} />
+      <ListItemPart title={data.P} textColor={textColor} />
+      <ListItemPart title={Number(data.q).toFixed(0)} textColor={"#D3D3D3"} />
     </div>
   );
 };

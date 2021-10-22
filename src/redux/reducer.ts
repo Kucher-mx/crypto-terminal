@@ -8,6 +8,10 @@ const initialState: StateType = {
   coins: [],
   orderBook: { E: 0, U: 0, e: "", s: "", u: 0, b: [], a: [], T: 0 },
   candleStick: [],
+  coinsSortProps: {
+    field: "s",
+    key: false,
+  },
 };
 
 const rootReducer = (state = initialState, action: any) => {
@@ -44,6 +48,13 @@ const rootReducer = (state = initialState, action: any) => {
       return {
         ...state,
       };
+
+    case actionTypes.SET_COINS_SORT:
+      return {
+        ...state,
+        coinsSortProps: action.payload,
+      };
+
     case actionTypes.SET_COINS:
       const newCoins = mergeCoins(state.coins, action.payload, "s");
 

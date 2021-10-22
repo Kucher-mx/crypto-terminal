@@ -20,7 +20,7 @@ const OBListItem = ({ data, idx, color }: Props) => {
       <ListItemPart title={Number(data[0]).toFixed(2)} textColor={color.text} />
       <ListItemPart title={Number(data[1]).toFixed(3)} textColor={"#B6B9C0"} />
       <ListItemPart
-        title={(data[0] * data[1])?.toFixed(5)}
+        title={(data[0] * data[1])?.toFixed(2)}
         textColor={"#B6B9C0"}
       />
     </div>
