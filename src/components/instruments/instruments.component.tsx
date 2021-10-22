@@ -73,16 +73,17 @@ const Instruments = () => {
           onClickHandler={onClickHandler}
         />
         <ListItemPart
-          title={
-            sortType.field === "c"
-              ? sortType.key
-                ? "price↑"
-                : "price↓"
-              : "price"
-          }
+          title={"price"}
+          // title={
+          //   sortType.field === "c"
+          //     ? sortType.key
+          //       ? "price↑"
+          //       : "price↓"
+          //     : "price"
+          // }
           textColor={"#B6B9C0"}
-          fieldName={"c"}
-          onClickHandler={onClickHandler}
+          // fieldName={"c"}
+          // onClickHandler={onClickHandler}
         />
         <ListItemPart
           title={
