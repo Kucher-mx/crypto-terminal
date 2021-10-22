@@ -61,25 +61,49 @@ const Instruments = () => {
       <Title title="Instruments" />
       <div className="list-item-4-e instruments-list-header">
         <ListItemPart
-          title={"Instrument"}
+          title={
+            sortType.field === "s"
+              ? sortType.key
+                ? "Instrument↑"
+                : "Instrument↓"
+              : "Instrument"
+          }
           textColor={"#B6B9C0"}
           fieldName={"s"}
           onClickHandler={onClickHandler}
         />
         <ListItemPart
-          title={"price"}
+          title={
+            sortType.field === "c"
+              ? sortType.key
+                ? "price↑"
+                : "price↓"
+              : "price"
+          }
           textColor={"#B6B9C0"}
           fieldName={"c"}
           onClickHandler={onClickHandler}
         />
         <ListItemPart
-          title={"24h %"}
+          title={
+            sortType.field === "P"
+              ? sortType.key
+                ? "24h %↑"
+                : "24h %↓"
+              : "24h %"
+          }
           textColor={"#B6B9C0"}
           fieldName={"P"}
           onClickHandler={onClickHandler}
         />
         <ListItemPart
-          title={"24h vol."}
+          title={
+            sortType.field === "q"
+              ? sortType.key
+                ? "24h vol↑"
+                : "24h vol↓"
+              : "24h vol"
+          }
           textColor={"#B6B9C0"}
           fieldName={"q"}
           onClickHandler={onClickHandler}
