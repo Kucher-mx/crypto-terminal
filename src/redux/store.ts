@@ -5,7 +5,8 @@ import logger from "redux-logger";
 
 import rootReducer from "./reducer";
 
-const middlewares: any[] = [logger];
+// const middlewares: any[] = [logger];
+const middlewares: any[] = [];
 
 export const store = createStore(rootReducer, applyMiddleware(...middlewares));
 

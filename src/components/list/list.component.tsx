@@ -9,13 +9,21 @@ type Props = {
   color: {
     text: string;
   };
+  sizeType?: string;
 };
 
-const List = ({ items, type, color }: Props) => {
+const List = ({ items, type, color, sizeType }: Props) => {
   return (
     <div className="list">
       {items.map((item, idx) => (
-        <ListItem data={item} type={type} color={color} idx={idx} />
+        <ListItem
+          data={item}
+          type={type}
+          color={color}
+          idx={idx}
+          key={idx}
+          sizeType={sizeType}
+        />
       ))}
     </div>
   );

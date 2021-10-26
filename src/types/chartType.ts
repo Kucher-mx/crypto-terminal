@@ -97,3 +97,49 @@ export type chartBarType = {
     };
   };
 };
+
+export type MainChartType = {
+  series: [{ data: { x: number; y: Array<number> }[]; name: string }];
+  options: {
+    chart: {
+      type:
+        | "bar"
+        | "area"
+        | "line"
+        | "candlestick"
+        | "histogram"
+        | "pie"
+        | "donut"
+        | "radialBar"
+        | "scatter"
+        | "bubble"
+        | "heatmap"
+        | "treemap"
+        | "boxPlot"
+        | "radar"
+        | "polarArea"
+        | "rangeBar"
+        | undefined;
+      height: number;
+      id: string;
+      toolbar: {
+        autoSelected: "pan" | "zoom" | "selection" | undefined;
+        show: boolean;
+      };
+      zoom: {
+        enabled: boolean;
+      };
+    };
+    plotOptions: {
+      candlestick: {
+        colors: {
+          upward: string;
+          downward: string;
+        };
+      };
+    };
+    xaxis: {
+      type: "numeric" | "datetime" | "category" | undefined;
+    };
+  };
+};
