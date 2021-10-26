@@ -7,18 +7,7 @@ const initialState: StateType = {
   trades: [],
   coins: [],
   orderBook: { E: 0, U: 0, e: "", s: "", u: 0, b: [], a: [], T: 0 },
-  candleStick: [
-    {
-      Time: Date.now(),
-      Date: new Date(Date.now()).toDateString(),
-      Label: "label",
-      Close: 0,
-      Open: 0,
-      High: 0,
-      Low: 0,
-      Volume: 0,
-    },
-  ],
+  candleStick: [],
   coinsSortProps: {
     field: "s",
     key: false,
@@ -87,11 +76,32 @@ const rootReducer = (state = initialState, action: any) => {
         Low: Number(l),
         Volume: Number(v),
       };
-
-      return {
-        ...state,
-        candleStick: [...state.candleStick, newEl],
-      };
+      if (
+        state.candleStick.length &&
+        t > Number(state.candleStick[state.candleStick.length - 1].Time) + 3600
+      ) {
+        return {
+          ...state,
+          candleStick: [...state.candleStick, newEl],
+        };
+      } else {
+        if (!state.candleStick.length) {
+          return {
+            ...state,
+            candleStick: [...state.candleStick, newEl],
+          };
+        }
+        const mergeEl = {
+          ...state.candleStick[state.candleStick.length - 1],
+          Close: Number(c),
+          High: Number(h),
+          Low: Number(l),
+        };
+        return {
+          ...state,
+          candleStick: [...state.candleStick.slice(0, -1), mergeEl],
+        };
+      }
     default:
       return state;
   }
