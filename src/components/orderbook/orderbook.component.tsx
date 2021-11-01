@@ -9,6 +9,7 @@ import "./orderbook.styles.css";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Title from "../title/title.component";
 import useWindowDimensions from "../../hooks/dimension.hook";
+import MartPrice from "../mark-price/mark-price.component";
 
 const OrderBook = () => {
   const orderBookData = useSelector((state: StateType) => state.orderBook);
@@ -37,8 +38,7 @@ const OrderBook = () => {
             />
             <div className="orderbook-summary">
               <div className="orderbook-summary-wrapper">
-                <div className="main">Index: 42345.042</div>
-                <div className="secondary">Mark: 42245.4234</div>
+                <MartPrice />
               </div>
             </div>
             <List

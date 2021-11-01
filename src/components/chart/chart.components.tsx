@@ -5,7 +5,6 @@ import Loader from "react-loader-spinner";
 
 import { IgrFinancialChart } from "igniteui-react-charts";
 import { IgrFinancialChartModule } from "igniteui-react-charts";
-// import { StockIndexData } from './StockIndexData';
 
 import "./chart.styles.css";
 
