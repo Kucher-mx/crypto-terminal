@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { StateType } from "../../types/redux.types";
 import Loader from "react-loader-spinner";
@@ -11,12 +11,27 @@ import "./chart.styles.css";
 IgrFinancialChartModule.register();
 
 const Chart = () => {
+  let chartRef: null | IgrFinancialChart = null;
+
   const candleStickData = useSelector((state: StateType) => state.candleStick);
+  useEffect(() => {
+    chartRef?.notifySetItem(
+      candleStickData,
+      candleStickData.length - 1,
+      {},
+      candleStickData[candleStickData.length - 1]
+    );
+  }, [candleStickData, chartRef]);
+
+  const onChartRef = (chart: IgrFinancialChart) => {
+    chartRef = chart;
+  };
 
   return (
     <div className="chart">
       {candleStickData.length > 0 ? (
         <IgrFinancialChart
+          ref={onChartRef}
           width="100%"
           height="100%"
           isToolbarVisible={false}
