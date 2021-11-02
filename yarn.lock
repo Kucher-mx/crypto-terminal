@@ -4155,6 +4155,14 @@
   "resolved" "https://registry.npmjs.org/char-regex/-/char-regex-1.0.2.tgz"
   "version" "1.0.2"
 
+"chart-library@^1.2.1":
+  "integrity" "sha512-sEuQE1vOhNg8uXxeKnn/bTUXokv51azR0ryD7lXncaCJ+10+cOUOTkBSrXojr8LEGGgXnYBhrTj//ki27VG5KA=="
+  "resolved" "https://registry.npmjs.org/chart-library/-/chart-library-1.2.1.tgz"
+  "version" "1.2.1"
+  dependencies:
+    "gauges-library" "latest"
+    "mindfusion-common" "latest"
+
 "check-types@^11.1.1":
   "integrity" "sha512-tzWzvgePgLORb9/3a0YenggReLKAIb2owL03H2Xdoe5pKcUyWRSEQ8xfCar8t2SIAuEDwtmx2da1YB52YuHQMQ=="
   "resolved" "https://registry.npmjs.org/check-types/-/check-types-11.1.2.tgz"
@@ -6316,6 +6324,13 @@
   "resolved" "https://registry.npmjs.org/functional-red-black-tree/-/functional-red-black-tree-1.0.1.tgz"
   "version" "1.0.1"
 
+"gauges-library@latest":
+  "integrity" "sha512-l+bno6v/UilVqSOHEsJxD6MAhEJZcH/LdKx+uWjeyzbASYnaL4LS98Ka+BysxxvE/mDV9nW6Gq5GFJbEmn4Gag=="
+  "resolved" "https://registry.npmjs.org/gauges-library/-/gauges-library-1.1.1.tgz"
+  "version" "1.1.1"
+  dependencies:
+    "mindfusion-common" "latest"
+
 "gensync@^1.0.0-beta.1":
   "integrity" "sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg=="
   "resolved" "https://registry.npmjs.org/gensync/-/gensync-1.0.0-beta.2.tgz"
@@ -8469,6 +8484,11 @@
   "integrity" "sha512-I9jwMn07Sy/IwOj3zVkVik2JTvgpaykDZEigL6Rx6N9LbMywwUSMtxET+7lVoDLLd3O3IXwJwvuuns8UB/HeAg=="
   "resolved" "https://registry.npmjs.org/min-indent/-/min-indent-1.0.1.tgz"
   "version" "1.0.1"
+
+"mindfusion-common@latest":
+  "integrity" "sha512-+A6HhDDHRssSVMqfP38nXW7g62h6M2H4cdu4+V/7exYAaeKAdKNLc2mZhDKuOvGK7SZbT3id4e78GiNPO9IBCg=="
+  "resolved" "https://registry.npmjs.org/mindfusion-common/-/mindfusion-common-1.2.6.tgz"
+  "version" "1.2.6"
 
 "mini-css-extract-plugin@0.11.3":
   "integrity" "sha512-n9BA8LonkOkW1/zn+IbLPQmovsL0wMb9yx75fMJQZf2X1Zoec9yTZtyMePcyu19wPkmFbzZZA6fLTotpFhQsOA=="

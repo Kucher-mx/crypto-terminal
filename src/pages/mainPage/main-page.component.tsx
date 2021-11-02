@@ -16,6 +16,7 @@ import OrderBook from "../../components/orderbook/orderbook.component";
 import Instruments from "../../components/instruments/instruments.component";
 import { websocketGetterOptions } from "../../consts/consts";
 import Chart from "../../components/chart/chart.components";
+import RealTimeChart from "../../components/chart/TestChart";
 
 const Main = () => {
   const navigator = useNavigate();
@@ -37,6 +38,8 @@ const Main = () => {
       } else if (Array.isArray(data)) {
         dispatch(setCoins(data));
       } else if (data.e === "kline") {
+        console.log("kline update");
+
         dispatch(setCandleStick(data.k));
       }
     };
@@ -54,6 +57,7 @@ const Main = () => {
         <Instruments />
         <OrderBook />
         <Trades />
+        {/* <RealTimeChart /> */}
         <Chart />
       </div>
     </>

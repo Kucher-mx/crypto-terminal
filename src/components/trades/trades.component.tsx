@@ -17,6 +17,14 @@ const Trades = () => {
     filterPrice: null,
   });
 
+  const filteredItems = tradesData.filter((item) => {
+    const size =
+      selectState.select === "COIN"
+        ? Number(item.q).toFixed(6)
+        : Number(+item.q * +item.p).toFixed(2);
+    return selectState.filterPrice ? +size >= selectState.filterPrice : true;
+  });
+
   return (
     <div className="trades">
       <div className="trades-header">
@@ -57,8 +65,7 @@ const Trades = () => {
       </div>
       <div className="list-wrapper">
         <List
-          items={tradesData}
-          sizeFilter={selectState.filterPrice}
+          items={filteredItems}
           type="trades"
           sizeType={selectState.select}
           color={{
