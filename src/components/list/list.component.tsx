@@ -10,9 +10,10 @@ type Props = {
     text: string;
   };
   sizeType?: string;
+  sizeFilter?: null | number;
 };
 
-const List = ({ items, type, color, sizeType }: Props) => {
+const List = ({ items, type, color, sizeType, sizeFilter }: Props) => {
   return (
     <div className="list">
       {items.map((item, idx) => (
@@ -23,6 +24,7 @@ const List = ({ items, type, color, sizeType }: Props) => {
           idx={idx}
           key={idx}
           sizeType={sizeType}
+          sizeFilter={sizeFilter}
         />
       ))}
     </div>

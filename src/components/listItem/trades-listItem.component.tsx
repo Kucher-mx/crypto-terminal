@@ -9,47 +9,64 @@ type Props = {
     text: string;
   };
   sizeType?: string;
+  sizeFilter?: number | null;
 };
 
-const TradesListItem = ({ data, idx, sizeType }: Props) => {
+const TradesListItem = ({ data, idx, sizeType, sizeFilter }: Props) => {
   const textColor = data.m ? "#5ABD2B" : "#EF5350";
   const formatDate = new Intl.DateTimeFormat("en-US", DataFormatOptions);
+  const size =
+    sizeType === "COIN"
+      ? Number(data.q).toFixed(6)
+      : Number(data.q * data.p).toFixed(2);
 
   return (
-    <div
-      className="list-item-4"
-      style={{
-        background: idx % 2 !== 0 ? "rgba(255, 255, 255, 0.1)" : "transparent",
-      }}
-    >
-      <ListItemPart title={data.m ? "buy" : "sale"} textColor={textColor} />
-      <ListItemPart title={Number(data.p).toFixed(2)} textColor={textColor} />
-      <ListItemPart
-        title={
-          sizeType === "COIN"
-            ? Number(data.q).toFixed(6)
-            : Number(data.q * data.p).toFixed(2)
-        }
-        textColor={textColor}
-      />
-      <ListItemPart title={formatDate.format(data.T)} textColor={textColor} />
-      {/* <ListItemPart
-          title={data.isBuyerMaker ? "buy" : "sale"}
-          textColor={textColor}
-        />
-        <ListItemPart
-          title={Number(data.price).toFixed(3)}
-          textColor={textColor}
-        />
-        <ListItemPart
-          title={Number(data.qty).toFixed(6)}
-          textColor={textColor}
-        />
-        <ListItemPart
-          title={formatDate.format(data.time)}
-          textColor={textColor}
-        /> */}
-    </div>
+    <>
+      {sizeFilter ? (
+        sizeFilter && +size >= sizeFilter ? (
+          <div
+            className="list-item-4"
+            style={{
+              background:
+                idx % 2 !== 0 ? "rgba(255, 255, 255, 0.1)" : "transparent",
+            }}
+          >
+            <ListItemPart
+              title={data.m ? "buy" : "sale"}
+              textColor={textColor}
+            />
+            <ListItemPart
+              title={Number(data.p).toFixed(2)}
+              textColor={textColor}
+            />
+            <ListItemPart title={size} textColor={textColor} />
+            <ListItemPart
+              title={formatDate.format(data.T)}
+              textColor={textColor}
+            />
+          </div>
+        ) : null
+      ) : (
+        <div
+          className="list-item-4"
+          style={{
+            background:
+              idx % 2 !== 0 ? "rgba(255, 255, 255, 0.1)" : "transparent",
+          }}
+        >
+          <ListItemPart title={data.m ? "buy" : "sale"} textColor={textColor} />
+          <ListItemPart
+            title={Number(data.p).toFixed(2)}
+            textColor={textColor}
+          />
+          <ListItemPart title={size} textColor={textColor} />
+          <ListItemPart
+            title={formatDate.format(data.T)}
+            textColor={textColor}
+          />
+        </div>
+      )}
+    </>
   );
 };
 

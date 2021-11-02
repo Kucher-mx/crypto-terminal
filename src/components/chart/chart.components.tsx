@@ -46,7 +46,7 @@ const Chart = () => {
           subtitleLeftMargin="25"
           subtitleTopMargin="5"
           subtitleBottomMargin="10"
-          yAxisLabelLocation="OutsideLeft"
+          yAxisLabelLocation="OutsideRight"
           yAxisMode="Numeric"
           // yAxisTitle="Financial Prices"
           yAxisTitleLeftMargin="10"

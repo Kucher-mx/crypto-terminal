@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { StateType } from "../../types/redux.types";
 
-const MartPrice = () => {
+const MarkPrice = () => {
   const markPriceClose = useSelector(
     (state: StateType) => state.candleStick[state.candleStick.length - 1]?.Close
   );
@@ -12,4 +12,4 @@ const MartPrice = () => {
   return <div className="main">{markPriceClose || ""}</div>;
 };
 
-export default MartPrice;
+export default MarkPrice;

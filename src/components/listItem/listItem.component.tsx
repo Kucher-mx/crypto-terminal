@@ -13,12 +13,19 @@ type Props = {
   };
   idx: number;
   sizeType?: string;
+  sizeFilter?: number | null;
 };
 
-const ListItem = ({ data, type, color, idx, sizeType }: Props) => {
+const ListItem = ({ data, type, color, idx, sizeType, sizeFilter }: Props) => {
   if (type === "trades") {
     return (
-      <TradesListItem data={data} idx={idx} color={color} sizeType={sizeType} />
+      <TradesListItem
+        data={data}
+        idx={idx}
+        color={color}
+        sizeType={sizeType}
+        sizeFilter={sizeFilter}
+      />
     );
   } else if (type === "coins") {
     return <CoinsListItem data={data} />;
