@@ -44,3 +44,37 @@
     transform: translateY(-50%);
     left: 17px;
 }
+
+.input-order {
+    position: relative;
+}
+
+.input-order input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    height: 33px;
+    border: 1px solid #000;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    display: flex;
+    padding: 0 7px;
+    margin: 6px 0;
+    color: rgba(197, 197, 197, 0.6);
+}
+
+.input-order input:focus {
+    outline: none;
+    border: 1px solid #CAAA05;
+}
+
+.input-label {
+    position: absolute;
+    right: 10px;
+    transform: translateY(-50%);
+    top: 50%;
+    font-size: 12px;
+}

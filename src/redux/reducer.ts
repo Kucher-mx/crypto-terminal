@@ -18,7 +18,7 @@ const rootReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case actionTypes.SET_TRADES:
       // need to extract this codein lvl upper
-      if (state.trades.length && action.payload.T > state.trades[0].T + 550) {
+      if (state.trades.length && action.payload.T > state.trades[0].T + 500) {
         const newTrades =
           state.trades.length < 30
             ? [action.payload, ...state.trades]

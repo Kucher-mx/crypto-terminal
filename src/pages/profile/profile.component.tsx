@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import Header from "../../components/header/header.component";
-import Input from "../../components/input/input.component";
-import { updateUserDoc } from "../../firebase/firebase";
-import "./profile.styles.css";
+import React, { useEffect, useState } from 'react';
+import Header from '../../components/header/header.component';
+import Input from '../../components/inputs/input/input.component';
+import { updateUserDoc } from '../../firebase/firebase';
+import './profile.styles.css';
 
 const Profile = () => {
   const [state, setstate] = useState({
-    apiKey: "",
-    secretApiKey: "",
+    apiKey: '',
+    secretApiKey: '',
   });
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,7 +19,7 @@ const Profile = () => {
     });
   };
   useEffect(() => {
-    const json = sessionStorage.getItem("userData");
+    const json = sessionStorage.getItem('userData');
     if (json) {
       const parsed = JSON.parse(json);
       setstate({ apiKey: parsed.apiKey, secretApiKey: parsed.secretApiKey });
@@ -28,7 +28,7 @@ const Profile = () => {
 
   const onSubmitHandler = (e: React.FormEvent) => {
     e.preventDefault();
-    const json = sessionStorage.getItem("userData");
+    const json = sessionStorage.getItem('userData');
     if (json) {
       const id = JSON.parse(json).id;
       updateUserDoc(id, state);
@@ -46,14 +46,14 @@ const Profile = () => {
                 placeholder="enter your api key"
                 type="text"
                 value={state.apiKey}
-                onChange={(e) => onChangeHandler(e)}
+                onChange={e => onChangeHandler(e)}
                 name="apiKey"
               />
               <Input
                 placeholder="enter your api secret key"
                 type="text"
                 value={state.secretApiKey}
-                onChange={(e) => onChangeHandler(e)}
+                onChange={e => onChangeHandler(e)}
                 name="secretApiKey"
               />
               <button type="submit" className="form-submit">

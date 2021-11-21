@@ -33,8 +33,12 @@ export const DataFormatOptions: {
 
 export const websocketGetterOptions = {
   method: "SUBSCRIBE",
-  // params: ["btcusdt@aggTrade", "btcusdt@depth", "!ticker@arr", "btcusdt@kline"],
-  params: ["btcusdt@kline_1m"],
+  params: [
+    "btcusdt@aggTrade",
+    "btcusdt@depth",
+    "!ticker@arr",
+    "btcusdt@kline_1m",
+  ],
   id: 1,
 };
 
