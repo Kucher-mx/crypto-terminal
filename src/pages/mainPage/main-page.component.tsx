@@ -11,7 +11,6 @@ import OrderBook from '../../components/orderbook/orderbook.component';
 import Instruments from '../../components/instruments/instruments.component';
 import { websocketGetterOptions } from '../../consts/consts';
 import Chart from '../../components/chart/chart.components';
-import RealTimeChart from '../../components/chart/TestChart';
 
 import CryptoJS from 'crypto-js';
 import CreateOrder from '../../components/create-order/create-order.component';
@@ -84,8 +83,7 @@ const Main = () => {
         <Instruments />
         <OrderBook />
         <Trades />
-        {/* <RealTimeChart /> */}
-        {/* <Chart /> */}
+        <Chart />
       </div>
     </>
   );
