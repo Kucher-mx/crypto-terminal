@@ -8,17 +8,27 @@ type PositionsItemProps = {
   lp: string;
   op: string;
   pnl: string;
+  closeAll: string | JSX.Element;
   customStyle?: string;
 };
 
-const PositionsListItem = ({ symbol, size, lp, op, pnl, customStyle = '' }: PositionsItemProps) => {
+const PositionsListItem = ({
+  symbol,
+  size,
+  lp,
+  op,
+  pnl,
+  closeAll,
+  customStyle = '',
+}: PositionsItemProps) => {
   return (
     <div className={`positions-list-item ${customStyle}`}>
-      <div className="positions-cell positions-item-text">{symbol}</div>
-      <div className="positions-cell positions-item-text">{size}</div>
+      <div className="cell-small positions-item-text ">{symbol}</div>
+      <div className="cell-small positions-item-text">{size}</div>
       <div className="positions-cell positions-item-text">{lp}</div>
-      <div className="positions-cell positions-item-htext">{op}</div>
-      <div className="positions-cell positions-item-text">{pnl}</div>
+      <div className="cell-small positions-item-htext">{op}</div>
+      <div className="cell-small positions-item-text">{pnl}</div>
+      <div className="positions-cell positions-item-text">{closeAll}</div>
     </div>
   );
 };

@@ -2,9 +2,19 @@
 .orders {
     grid-column-start: 2;
     grid-column-end: 4;
-    grid-row-start: 2;
-    grid-row-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 4;
     position: relative;
+    padding-bottom: 5px;
+}
+
+.orders::before {
+    content: '';
+    position: absolute; 
+    top: -5px;
+    width: 100%;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 .orders-header {
@@ -37,7 +47,8 @@
 }
 
 .order-cell {
-    width: 14% ;
+    padding: 3px 0 3px 20px;
+    width: 16% ;
 }
 
 .orders-list-item {
@@ -77,4 +88,10 @@
     border: none;
     text-transform: capitalize;
     color: #d3d3d3
+}
+
+.close {
+    color: rgba(239, 83, 80, 1);
+    cursor: pointer;
+    width: 4%;
 }

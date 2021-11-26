@@ -33,7 +33,7 @@ const OrdersListItem = ({
       </div>
       <div className="order-cell orders-item-text">{quantity}</div>
       <div className="order-cell orders-item-text">{time}</div>
-      <div className="order-cell orders-item-text">{customStyle ? '' : 'close'}</div>
+      <div className="order-cell orders-item-text close">{customStyle ? '' : '✕'}</div>
     </div>
   );
 };
