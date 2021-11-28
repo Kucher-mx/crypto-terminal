@@ -3,10 +3,11 @@
     background: linear-gradient(210.96deg, rgba(36, 33, 81, 0.296) 0.01%, rgba(38, 35, 83, 0.312) 24.03%, rgba(28, 26, 64, 0.204) 104.81%);
     box-shadow: -29px 60px 90px rgba(23, 18, 43, 0.55);
     backdrop-filter: blur(25px);
+    padding-top: 10px;
     border-radius: 10px;
-    grid-column-start: 3;
-    grid-column-end: 4;
-    grid-row-start: 3;
+    grid-column-start: 4;
+    grid-column-end: 5;
+    grid-row-start: 2;
     grid-row-end: 4;
 }
 

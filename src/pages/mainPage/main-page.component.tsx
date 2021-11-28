@@ -14,6 +14,8 @@ import Chart from '../../components/chart/chart.components';
 
 import CryptoJS from 'crypto-js';
 import CreateOrder from '../../components/create-order/create-order.component';
+import Orders from '../../components/orders/orders.component';
+import Positions from '../../components/positions/positions.component';
 
 const Main = () => {
   const navigator = useNavigate();
@@ -84,6 +86,8 @@ const Main = () => {
         <OrderBook />
         <Trades />
         <Chart />
+        <Orders />
+        <Positions />
       </div>
     </>
   );

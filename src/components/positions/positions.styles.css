@@ -1,0 +1,100 @@
+
+
+.positions {
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    position: relative;
+    padding-top: 10px;
+    position: relative;
+}
+
+
+
+.positions-button {
+    padding: 3px 8px;
+    width: fit-content;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+}
+
+.positions-grid-wrapper {
+    height: calc(100% - 55px);
+    overflow: scroll;
+    position: relative;
+}
+
+.positions-cell {
+    display: flex;
+    justify-content: center;
+    width: 20% ;
+}
+
+.cell-small {
+    display: flex;
+    justify-content: center;
+    width: 12%;
+}
+
+.positions-list-item {
+    padding: 3px 25px;
+    padding-right: 0;
+    justify-content: space-between;
+    display: flex;
+    font-size: 12px;
+    margin: 5px 0;
+    width: 80%;
+}
+
+.positions-item-text {
+    color: #d3d3d3
+}
+
+.positions-item-htext {
+    color: rgba(239, 83, 80, 0.85);
+}
+
+.positions-list-header {
+    margin-bottom: 5px;
+    color: rgba(255, 255, 255, 0.2);
+    background: rgb(103, 99, 99);
+    width: 100%;
+    align-items: center;
+    padding-right: 20%;
+}
+
+.positions-list-header > .positions-item-text, .positions-list-header > .positions-item-htext {
+    font-size: 15px;
+    border: none;
+    text-transform: capitalize;
+    color: #d3d3d3
+}
+
+.positions-buttons {
+    width: 150%;
+    display: flex;
+    
+}
+
+.position-button{
+    background:rgba(239, 83, 80, 0.85);
+}
+
+.position-item-wrapper {
+    width: 100%;
+    display: flex;
+}
+
+.positions-inputs {
+    display: flex;
+    justify-content: space-between;
+    width: 20%;
+    padding-right: 15px;
+}
+
+.positions-inputs input {
+    width: 94%;
+    height: 25px;
+    color: #f3f0f0;
+}
