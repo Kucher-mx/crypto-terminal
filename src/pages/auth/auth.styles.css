@@ -64,7 +64,6 @@
 
 .input-wrapper {
     padding: 15px;
-    min-height: 50vh;
     height: 700px;
     width: 640px;
     display: flex;
