@@ -1,8 +1,9 @@
 .profile {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
+    padding: 80px 40px;
     justify-content: center;
     align-items: center;
     background: radial-gradient(123.22% 129.67% at 100.89% -5.6%, #201D47 0%, #17153A 100%);
@@ -14,14 +15,10 @@
     backdrop-filter: blur(25px);
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.18);
-    width: 50%;
-    min-height: 35vh;
-    height: fit-content;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    padding: 35px 0;
-    justify-content: center;
-    align-items: center;
+    padding: 35px 30px;
 }
 
 .profile_form {
@@ -32,4 +29,57 @@
 
 .profile_form button {
     align-self: flex-end;
+}
+
+.api_block {
+    margin-top: 40px;
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+}
+
+.risks_block {
+    margin-top: 50px;
+}
+
+.risks_block .switch-wrapper{
+    font-size: 18px;
+}
+
+.risks_block .title {
+    margin: 0;
+    padding: 0;
+    font-size: 24px;
+}
+
+.profile-input-block {
+    margin: 15px 0;
+    position: relative;
+}
+
+.profile-input-block .label {
+    display: flex;
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -5%;
+}
+
+.profile-input-block .label .checkbox {
+    margin-right: 5px;
+}
+
+.risks_inputs {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+.profile_email {
+    display: flex;
+    align-items: flex-end;
+    font-weight: bold;
+    font-size: 32px;
+    color: #fff;
 }
