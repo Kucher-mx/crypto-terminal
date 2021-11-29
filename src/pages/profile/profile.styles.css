@@ -28,7 +28,9 @@
 }
 
 .profile_form button {
-    align-self: flex-end;
+    position: absolute;
+    top: 25px;
+    right: 25px;
 }
 
 .api_block {
