@@ -8,7 +8,7 @@
 
 .input-control input {
     padding: 3px 10px;
-    padding-left: 75px;
+    /* padding-left: 75px; */
     outline: none;
     border: none;
     border-radius: 10px;
@@ -77,4 +77,16 @@
     transform: translateY(-50%);
     top: 50%;
     font-size: 12px;
+}
+
+.input-text {
+    position: absolute;
+    top: -30px;
+    z-index: 10;
+    padding: 2px 7px;
+    left: 15px;
+    font-size: 19px;
+    line-height: 25px;
+    color: #FFFFFF;
+    font-weight: bold;
 }

@@ -6,11 +6,19 @@ type CheckboxPropsType = {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   children?: JSX.Element | string;
   value: boolean;
+  customClass?: string;
 };
 
-const CheckboxCustom = ({ children, value, name, id, onChange }: CheckboxPropsType) => {
+const CheckboxCustom = ({
+  children,
+  value,
+  name,
+  id,
+  onChange,
+  customClass = '',
+}: CheckboxPropsType) => {
   return (
-    <div className="checkbox">
+    <div className={`checkbox ${customClass}`}>
       <input type="checkbox" name={name} id={id} onChange={onChange} checked={value} />
       {children}
     </div>

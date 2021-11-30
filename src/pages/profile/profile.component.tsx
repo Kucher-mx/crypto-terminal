@@ -58,6 +58,8 @@ const Profile = () => {
                 value={state.apiKey}
                 onChange={e => onChangeHandler(e)}
                 name="apiKey"
+                label="API Key"
+                icon
               />
               <Input
                 placeholder="enter your api secret key"
@@ -65,6 +67,8 @@ const Profile = () => {
                 value={state.secretApiKey}
                 onChange={e => onChangeHandler(e)}
                 name="secretApiKey"
+                label="Secret Key"
+                icon
               />
             </div>
 
@@ -76,6 +80,7 @@ const Profile = () => {
                 onChange={onChangeHandler}
                 value={state.risk}
                 options={['Auto', 'Manual']}
+                customClass={'profile-switch'}
               />
               <div className="risks_inputs">
                 <div className="profile-input-block">
@@ -85,6 +90,7 @@ const Profile = () => {
                       id={'stopLossCheckBox'}
                       onChange={onChangeHandler}
                       value={state.stopLossCheckBox}
+                      customClass="profile-checkbox"
                     />
                     Stop-Loss
                   </div>
@@ -104,6 +110,7 @@ const Profile = () => {
                       id={'takeProfitCheckBox'}
                       onChange={onChangeHandler}
                       value={state.takeProfitCheckBox}
+                      customClass="profile-checkbox"
                     />
                     Take-Profit
                   </div>
@@ -119,7 +126,7 @@ const Profile = () => {
               </div>
             </div>
 
-            <button type="submit" className="form-submit">
+            <button type="submit" className="form-submit profile-button">
               Save
             </button>
           </form>
