@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { StateType } from '../../types/redux.types';
 import ButtonCustom from '../button/button.component';
 import CheckboxCustom from '../inputs/checkbox/checkbox.component';
 import InputOrder from '../inputs/input/input-order.component';
@@ -15,6 +17,7 @@ const buyHandler = () => console.log('buy');
 const sellHandler = () => console.log('sell');
 
 const StopLimit = () => {
+  const riskType: string = useSelector((state: StateType) => state.risk);
   const [stopLimitInfo, setStopLimitInfo] = useState({
     'stop-limit-price': '',
     'stop-price': '',
@@ -77,9 +80,11 @@ const StopLimit = () => {
         labelSymbol={'%'}
       />
 
-      <CheckboxCustom id="TP/SL" name="tpsl" onChange={changeHandler} value={stopLimitInfo.tpsl}>
-        TP/SL
-      </CheckboxCustom>
+      {riskType === 'manual' ? (
+        <CheckboxCustom id="TP/SL" name="tpsl" onChange={changeHandler} value={stopLimitInfo.tpsl}>
+          TP/SL
+        </CheckboxCustom>
+      ) : null}
 
       {stopLimitInfo.tpsl ? (
         <div className="limit-input-wrapper">

@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { StateType } from '../../types/redux.types';
 import ButtonCustom from '../button/button.component';
 import CheckboxCustom from '../inputs/checkbox/checkbox.component';
 import InputOrder from '../inputs/input/input-order.component';
@@ -6,7 +8,6 @@ import RangeCustom from '../inputs/range/range.component';
 import SelectCustom from '../inputs/select/select.component';
 import Switch from '../inputs/switch/switch.component';
 
-const available = 54000;
 const optionsArr = [
   { title: 'Price', value: 'price' },
   { title: 'Persent', value: 'persent' },
@@ -16,6 +17,7 @@ const buyHandler = () => console.log('buy');
 const sellHandler = () => console.log('sell');
 
 const Market = () => {
+  const riskType: string = useSelector((state: StateType) => state.risk);
   const [marketInfo, setMarketInfo] = useState({
     'market-size': '',
     'stop-loss': 'price',
@@ -60,9 +62,11 @@ const Market = () => {
         labelSymbol={'%'}
       />
 
-      <CheckboxCustom id="TP/SL" name="tpsl" onChange={changeHandler} value={marketInfo.tpsl}>
-        TP/SL
-      </CheckboxCustom>
+      {riskType === 'manual' ? (
+        <CheckboxCustom id="TP/SL" name="tpsl" onChange={changeHandler} value={marketInfo.tpsl}>
+          TP/SL
+        </CheckboxCustom>
+      ) : null}
 
       {marketInfo.tpsl ? (
         <div className="limit-input-wrapper">
