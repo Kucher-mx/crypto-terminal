@@ -1,17 +1,18 @@
-import { mergeCoins } from "./../helpers/reducer.utils";
-import { StateType } from "../types/redux.types";
-import { actionTypes } from "./action.types";
+import { mergeCoins } from './../helpers/reducer.utils';
+import { StateType } from '../types/redux.types';
+import { actionTypes } from './action.types';
 
 const initialState: StateType = {
-  MainCoin: "BTSUSDT",
+  MainCoin: 'BTSUSDT',
   trades: [],
   coins: [],
-  orderBook: { E: 0, U: 0, e: "", s: "", u: 0, b: [], a: [], T: 0 },
+  orderBook: { E: 0, U: 0, e: '', s: '', u: 0, b: [], a: [], T: 0 },
   candleStick: [],
   coinsSortProps: {
-    field: "s",
+    field: 's',
     key: false,
   },
+  risk: 'manual',
 };
 
 const rootReducer = (state = initialState, action: any) => {
@@ -56,7 +57,7 @@ const rootReducer = (state = initialState, action: any) => {
       };
 
     case actionTypes.SET_COINS:
-      const newCoins = mergeCoins(state.coins, action.payload, "s");
+      const newCoins = mergeCoins(state.coins, action.payload, 's');
 
       return {
         ...state,
@@ -69,7 +70,7 @@ const rootReducer = (state = initialState, action: any) => {
       const newEl = {
         Time: new Date(t),
         Date: new Date(t).toDateString(),
-        Label: "label",
+        Label: 'label',
         Close: Number(c),
         Open: Number(o),
         High: Number(h),
@@ -102,6 +103,11 @@ const rootReducer = (state = initialState, action: any) => {
           candleStick: [...state.candleStick.slice(0, -1), mergeEl],
         };
       }
+    case actionTypes.SET_RISK:
+      return {
+        ...state,
+        risk: action.payload,
+      };
     default:
       return state;
   }

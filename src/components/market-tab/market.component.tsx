@@ -20,6 +20,8 @@ const Market = () => {
     'market-size': '',
     'stop-loss': 'price',
     'take-profit': 'price',
+    'take-profit-unput': '',
+    'stop-loss-input': '',
     leverage: 0,
     tpsl: false,
     im: false,
@@ -36,10 +38,6 @@ const Market = () => {
 
   return (
     <div className="limit">
-      <div className="text-block">
-        Avbl: <span className="text-num">{available}</span>
-      </div>
-
       <div className="limit-input-wrapper">
         <InputOrder
           placeholder={'Size'}
@@ -62,33 +60,41 @@ const Market = () => {
         labelSymbol={'%'}
       />
 
-      <div className="limit-text-info">
-        <div className="text-block">
-          Buy: <span className="text-num">{'0.00 USDT'}</span>
-        </div>
-        <div className="text-block">
-          Sell: <span className="text-num">{'0.00 USDT'}</span>
-        </div>
-      </div>
-
       <CheckboxCustom id="TP/SL" name="tpsl" onChange={changeHandler} value={marketInfo.tpsl}>
         TP/SL
       </CheckboxCustom>
 
       {marketInfo.tpsl ? (
         <div className="limit-input-wrapper">
-          <SelectCustom
-            options={optionsArr}
-            name="stop-loss"
-            value={marketInfo['stop-loss']}
-            onChange={changeHandler}
-          />
-          <SelectCustom
-            options={optionsArr}
-            name="take-profit"
-            value={marketInfo['take-profit']}
-            onChange={changeHandler}
-          />
+          <div className="tpsl-input-wrap">
+            <InputOrder
+              placeholder={''}
+              value={marketInfo['stop-loss-input'].toString()}
+              name={'stop-loss-input'}
+              onChange={changeHandler}
+            />
+            <SelectCustom
+              options={optionsArr}
+              name="stop-loss"
+              value={marketInfo['stop-loss']}
+              onChange={changeHandler}
+            />
+          </div>
+
+          <div className="tpsl-input-wrap">
+            <InputOrder
+              placeholder={''}
+              value={marketInfo['take-profit-unput'].toString()}
+              name={'take-profit-unput'}
+              onChange={changeHandler}
+            />
+            <SelectCustom
+              options={optionsArr}
+              name="take-profit"
+              value={marketInfo['take-profit']}
+              onChange={changeHandler}
+            />
+          </div>
         </div>
       ) : null}
 

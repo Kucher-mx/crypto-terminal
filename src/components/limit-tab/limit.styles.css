@@ -148,3 +148,15 @@
   .limit-size input {
       width: 100%;
   }
+
+  .tpsl-input-wrap {
+    display: flex;
+  }
+
+  .tpsl-input-wrap .input-order{
+    width: 75%;
+  }
+
+  .tpsl-input-wrap .select-custom{
+    width: 25%;
+  }

@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { StateType } from '../../types/redux.types';
 import ButtonCustom from '../button/button.component';
 import CheckboxCustom from '../inputs/checkbox/checkbox.component';
 import InputOrder from '../inputs/input/input-order.component';
@@ -8,7 +10,6 @@ import Switch from '../inputs/switch/switch.component';
 
 import './limit.styles.css';
 
-const available = 54000;
 const optionsArr = [
   { title: 'Price', value: 'price' },
   { title: 'Persent', value: 'persent' },
@@ -18,9 +19,12 @@ const buyHandler = () => console.log('buy');
 const sellHandler = () => console.log('sell');
 
 const Limit = () => {
+  const riskType: string = useSelector((state: StateType) => state.risk);
   const [limitInfo, setLimitInfo] = useState({
     'limit-price': '',
     'limit-size': '',
+    'stop-loss-input': '',
+    'take-profit-unput': '',
     'stop-loss': 'price',
     'take-profit': 'price',
     leverage: 0,
@@ -38,10 +42,6 @@ const Limit = () => {
 
   return (
     <div className="limit">
-      <div className="text-block">
-        Avbl: <span className="text-num">{available}</span>
-      </div>
-
       <div className="limit-input-wrapper">
         <InputOrder
           placeholder={'Price'}
@@ -72,33 +72,43 @@ const Limit = () => {
         labelSymbol={'%'}
       />
 
-      <div className="limit-text-info">
-        <div className="text-block">
-          Buy: <span className="text-num">{'0.00 USDT'}</span>
-        </div>
-        <div className="text-block">
-          Sell: <span className="text-num">{'0.00 USDT'}</span>
-        </div>
-      </div>
-
-      <CheckboxCustom id="TP/SL" name="tpsl" onChange={changeHandler} value={limitInfo.tpsl}>
-        TP/SL
-      </CheckboxCustom>
+      {riskType === 'manual' ? (
+        <CheckboxCustom id="TP/SL" name="tpsl" onChange={changeHandler} value={limitInfo.tpsl}>
+          TP/SL
+        </CheckboxCustom>
+      ) : null}
 
       {limitInfo.tpsl ? (
         <div className="limit-input-wrapper">
-          <SelectCustom
-            options={optionsArr}
-            name="stop-loss"
-            value={limitInfo['stop-loss']}
-            onChange={changeHandler}
-          />
-          <SelectCustom
-            options={optionsArr}
-            name="take-profit"
-            value={limitInfo['take-profit']}
-            onChange={changeHandler}
-          />
+          <div className="tpsl-input-wrap">
+            <InputOrder
+              placeholder={''}
+              value={limitInfo['stop-loss-input'].toString()}
+              name={'stop-loss-input'}
+              onChange={changeHandler}
+            />
+            <SelectCustom
+              options={optionsArr}
+              name="stop-loss"
+              value={limitInfo['stop-loss']}
+              onChange={changeHandler}
+            />
+          </div>
+
+          <div className="tpsl-input-wrap">
+            <InputOrder
+              placeholder={''}
+              value={limitInfo['take-profit-unput'].toString()}
+              name={'take-profit-unput'}
+              onChange={changeHandler}
+            />
+            <SelectCustom
+              options={optionsArr}
+              name="take-profit"
+              value={limitInfo['take-profit']}
+              onChange={changeHandler}
+            />
+          </div>
         </div>
       ) : null}
 

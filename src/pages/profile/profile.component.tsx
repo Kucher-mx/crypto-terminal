@@ -6,12 +6,16 @@ import Switch from '../../components/inputs/switch/switch.component';
 import { updateUserDoc } from '../../firebase/firebase';
 import './profile.styles.css';
 import { ReactComponent as UserIcon } from '../../components/inputs/input/assets/akar-icons_person.svg';
+import { useDispatch, useSelector } from 'react-redux';
+import { setRisk } from '../../redux/actions';
+import { StateType } from '../../types/redux.types';
 
 const Profile = () => {
+  const riskType: string = useSelector((state: StateType) => state.risk);
   const [state, setstate] = useState({
     apiKey: '',
     secretApiKey: '',
-    risk: false,
+    risk: riskType === 'auto',
     stopLossCheckBox: false,
     stopLoss: '',
     takeProfitCheckBox: false,
@@ -25,6 +29,8 @@ const Profile = () => {
       [name]: type === 'checkbox' ? checked : value,
     });
   };
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const json = sessionStorage.getItem('userData');
@@ -77,9 +83,12 @@ const Profile = () => {
               <Switch
                 name={'risk'}
                 id={'risk'}
-                onChange={onChangeHandler}
+                onChange={e => {
+                  onChangeHandler(e);
+                  dispatch(setRisk(state.risk ? 'manual' : 'auto'));
+                }}
                 value={state.risk}
-                options={['Auto', 'Manual']}
+                options={['auto', 'manual']}
                 customClass={'profile-switch'}
               />
               <div className="risks_inputs">

@@ -16,7 +16,7 @@ const Switch = ({ value, name, id, onChange, options, customClass = '' }: Slider
         <input type="checkbox" name={name} id={id} onChange={onChange} checked={value} />
         <span className="slider round"></span>
       </label>
-      {value ? options[1] : options[0]}
+      {value ? options[0] : options[1]}
     </div>
   );
 };

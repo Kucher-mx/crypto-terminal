@@ -1,4 +1,4 @@
-import { actionTypes } from "./action.types";
+import { actionTypes } from './action.types';
 
 export const setTrades = (payload: any) => {
   return {
@@ -31,6 +31,13 @@ export const setOrderBook = (payload: any) => {
 export const setCandleStick = (payload: any) => {
   return {
     type: actionTypes.SET_CANDLESTICK,
+    payload,
+  };
+};
+
+export const setRisk = (payload: any) => {
+  return {
+    type: actionTypes.SET_RISK,
     payload,
   };
 };

@@ -6,7 +6,6 @@ import RangeCustom from '../inputs/range/range.component';
 import SelectCustom from '../inputs/select/select.component';
 import Switch from '../inputs/switch/switch.component';
 
-const available = 54000;
 const optionsArr = [
   { title: 'Price', value: 'price' },
   { title: 'Persent', value: 'persent' },
@@ -22,6 +21,8 @@ const StopLimit = () => {
     'stop-limit-size': '',
     'stop-loss': 'price',
     'take-profit': 'price',
+    'take-profit-unput': '',
+    'stop-loss-input': '',
     leverage: 0,
     tpsl: false,
     im: false,
@@ -38,10 +39,6 @@ const StopLimit = () => {
 
   return (
     <div className="limit">
-      <div className="text-block">
-        Avbl: <span className="text-num">{available}</span>
-      </div>
-
       <div className="limit-input-wrapper">
         <InputOrder
           placeholder={'Stop'}
@@ -80,33 +77,41 @@ const StopLimit = () => {
         labelSymbol={'%'}
       />
 
-      <div className="limit-text-info">
-        <div className="text-block">
-          Buy: <span className="text-num">{'0.00 USDT'}</span>
-        </div>
-        <div className="text-block">
-          Sell: <span className="text-num">{'0.00 USDT'}</span>
-        </div>
-      </div>
-
       <CheckboxCustom id="TP/SL" name="tpsl" onChange={changeHandler} value={stopLimitInfo.tpsl}>
         TP/SL
       </CheckboxCustom>
 
       {stopLimitInfo.tpsl ? (
         <div className="limit-input-wrapper">
-          <SelectCustom
-            options={optionsArr}
-            name="stop-loss"
-            value={stopLimitInfo['stop-loss']}
-            onChange={changeHandler}
-          />
-          <SelectCustom
-            options={optionsArr}
-            name="take-profit"
-            value={stopLimitInfo['take-profit']}
-            onChange={changeHandler}
-          />
+          <div className="tpsl-input-wrap">
+            <InputOrder
+              placeholder={''}
+              value={stopLimitInfo['stop-loss-input'].toString()}
+              name={'stop-loss-input'}
+              onChange={changeHandler}
+            />
+            <SelectCustom
+              options={optionsArr}
+              name="stop-loss"
+              value={stopLimitInfo['stop-loss']}
+              onChange={changeHandler}
+            />
+          </div>
+
+          <div className="tpsl-input-wrap">
+            <InputOrder
+              placeholder={''}
+              value={stopLimitInfo['take-profit-unput'].toString()}
+              name={'take-profit-unput'}
+              onChange={changeHandler}
+            />
+            <SelectCustom
+              options={optionsArr}
+              name="take-profit"
+              value={stopLimitInfo['take-profit']}
+              onChange={changeHandler}
+            />
+          </div>
         </div>
       ) : null}
 
