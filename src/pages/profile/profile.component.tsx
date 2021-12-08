@@ -35,6 +35,7 @@ const Profile = () => {
   useEffect(() => {
     const json = sessionStorage.getItem('userData');
     if (json) {
+      // TODO: fix firebase and profile
       const parsed = JSON.parse(json);
       //setstate({ apiKey: parsed.apiKey, secretApiKey: parsed.secretApiKey });
     }

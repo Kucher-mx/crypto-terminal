@@ -41,3 +41,10 @@ export const setRisk = (payload: any) => {
     payload,
   };
 };
+
+export const setAsset = (payload: any) => {
+  return {
+    type: actionTypes.SET_ASSET,
+    payload,
+  };
+};

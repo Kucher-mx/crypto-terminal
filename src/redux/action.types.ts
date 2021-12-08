@@ -5,4 +5,5 @@ export const actionTypes = {
   SET_CANDLESTICK: 'SET_CANDLESTICK',
   SET_COINS_SORT: 'SET_COINS_SORT',
   SET_RISK: 'SET_RISK',
+  SET_ASSET: 'SET_ASSET',
 };

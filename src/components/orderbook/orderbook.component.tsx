@@ -8,13 +8,11 @@ import Loader from 'react-loader-spinner';
 import './orderbook.styles.css';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import Title from '../title/title.component';
-import useWindowDimensions from '../../hooks/dimension.hook';
 import MarkPrice from '../mark-price/mark-price.component';
 
 const OrderBook = () => {
   const orderBookData = useSelector((state: StateType) => state.orderBook);
   const { a, b } = orderBookData;
-  const { height } = useWindowDimensions();
 
   const itemsAmount = 12;
 

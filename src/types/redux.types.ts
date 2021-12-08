@@ -58,4 +58,5 @@ export type StateType = {
     key: boolean;
   };
   risk: 'manual' | 'auto';
+  asset: string;
 };

@@ -1,7 +1,6 @@
 import React from 'react';
 import Loader from 'react-loader-spinner';
 import { useDispatch, useSelector } from 'react-redux';
-import { JsxEmit } from 'typescript';
 import { setCoinsSort } from '../../redux/actions';
 import { StateType } from '../../types/redux.types';
 import List from '../list/list.component';

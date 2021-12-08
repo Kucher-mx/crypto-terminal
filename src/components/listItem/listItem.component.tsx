@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
-import "./listItem.styles.css";
-import CoinsListItem from "./coins-listItem.component";
-import OBListItem from "./orderbook-listItem.component";
-import TradesListItem from "./trades-listItem.component";
+import './listItem.styles.css';
+import CoinsListItem from './coins-listItem.component';
+import OBListItem from './orderbook-listItem.component';
+import TradesListItem from './trades-listItem.component';
 
 type Props = {
   data: any;
@@ -16,11 +16,9 @@ type Props = {
 };
 
 const ListItem = ({ data, type, color, idx, sizeType }: Props) => {
-  if (type === "trades") {
-    return (
-      <TradesListItem data={data} idx={idx} color={color} sizeType={sizeType} />
-    );
-  } else if (type === "coins") {
+  if (type === 'trades') {
+    return <TradesListItem data={data} idx={idx} color={color} sizeType={sizeType} />;
+  } else if (type === 'coins') {
     return <CoinsListItem data={data} />;
   } else {
     return <OBListItem data={data} idx={idx} color={color} />;
