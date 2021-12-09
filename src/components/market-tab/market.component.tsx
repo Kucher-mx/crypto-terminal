@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { createOrder } from '../../consts/helpers';
 import { StateType } from '../../types/redux.types';
 import ButtonCustom from '../button/button.component';
 import CheckboxCustom from '../inputs/checkbox/checkbox.component';
@@ -13,11 +14,9 @@ const optionsArr = [
   { title: 'Persent', value: 'persent' },
 ];
 
-const buyHandler = () => console.log('buy');
-const sellHandler = () => console.log('sell');
-
 const Market = () => {
   const riskType: string = useSelector((state: StateType) => state.risk);
+  const asset: string = useSelector((state: StateType) => state.asset);
   const [marketInfo, setMarketInfo] = useState({
     'market-size': '',
     'stop-loss': 'price',
@@ -28,6 +27,15 @@ const Market = () => {
     tpsl: false,
     im: false,
   });
+
+  const createHandler = (side: string) => {
+    createOrder({
+      type: 'market',
+      asset,
+      side,
+      quoteOrderQty: Number(marketInfo['market-size']),
+    });
+  };
 
   const changeHandler = (e: React.ChangeEvent<any>) => {
     const { value, name, type, checked } = e.target;
@@ -103,10 +111,10 @@ const Market = () => {
       ) : null}
 
       <div className="co-buttons-wrapper">
-        <ButtonCustom customClass="green" onClick={buyHandler}>
+        <ButtonCustom customClass="green" onClick={() => createHandler('buy')}>
           Buy/Long
         </ButtonCustom>
-        <ButtonCustom customClass="red" onClick={sellHandler}>
+        <ButtonCustom customClass="red" onClick={() => createHandler('sell')}>
           Sell/Short
         </ButtonCustom>
       </div>
