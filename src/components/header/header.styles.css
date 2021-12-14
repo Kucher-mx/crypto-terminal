@@ -5,19 +5,22 @@
     align-items: center;
     padding: 0 15px;
     justify-content: space-between;
-    background-color: rgb(37, 43, 68);
+    /* background-color: rgb(37, 43, 68); */
+    color: #181C28;
+    background-color: #F2F2F2;
 }
 
 .sign-in_button span {
-    color: azure;
+    color: #181C28;
+    margin-left: 15px;
 }
 
 .settings_button span {
-    color: azure;
+    color: #181C28;
 }
 
 .right-side {
     width: 25%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
 }

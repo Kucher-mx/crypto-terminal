@@ -4,10 +4,14 @@ import { useSelector } from 'react-redux';
 import TradingViewWidget from 'react-tradingview-widget';
 import { StateType } from '../../types/redux.types';
 
+import './chart.styles.css';
+
 const Chart = () => {
   const asset = useSelector((state: StateType) => state.asset);
   return (
-    <TradingViewWidget symbol={`${asset.toUpperCase()}PERP`} locale="en" theme="dark" autosize />
+    <div className="chart-wrapper">
+      <TradingViewWidget symbol={`${asset.toUpperCase()}PERP`} locale="en" theme="dark" autosize />
+    </div>
   );
 };
 

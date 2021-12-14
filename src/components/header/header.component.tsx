@@ -1,10 +1,11 @@
-import React from "react";
-import Logo from "../logo/logo.component";
-import Button from "@material-ui/core/Button";
+import React from 'react';
+import Logo from '../logo/logo.component';
+import Button from '@material-ui/core/Button';
 
-import "./header.styles.css";
-import { useNavigate } from "react-router-dom";
-import { auth } from "../../firebase/firebase";
+import './header.styles.css';
+
+import { useNavigate } from 'react-router-dom';
+import { auth } from '../../firebase/firebase';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ const Header = () => {
           variant="outlined"
           size="small"
           className="settings_button"
-          onClick={(e) => navigate("/profile")}
+          onClick={e => navigate('/profile')}
         >
           <span>Profile & Settings</span>
         </Button>
@@ -24,10 +25,10 @@ const Header = () => {
           variant="text"
           size="small"
           className="sign-in_button"
-          onClick={(e) => {
+          onClick={e => {
             auth.signOut();
             sessionStorage.clear();
-            navigate("/auth");
+            navigate('/auth');
           }}
         >
           <span>log out</span>

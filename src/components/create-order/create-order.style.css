@@ -2,7 +2,12 @@
     padding: 28px 11px 0 7px;
     width: 100%;
     grid-row-start: 1;
-    grid-row-end: 3;
+    /* grid-row-end: 3; old one*/
+    grid-row-end: 4;
+    border-radius: 10px;
+    background: #161A25;
+    box-shadow: -29px 60px 90px rgba(23, 18, 43, 0.55);
+    backdrop-filter: blur(25px);
 }
 
 .tabs-wrappers {

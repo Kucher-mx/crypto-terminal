@@ -1,7 +1,6 @@
 .trades {
     overflow: auto;
     width: 100%;
-    background: linear-gradient(210.96deg, rgba(36, 33, 81, 0.296) 0.01%, rgba(38, 35, 83, 0.312) 24.03%, rgba(28, 26, 64, 0.204) 104.81%);
     box-shadow: -29px 60px 90px rgba(23, 18, 43, 0.55);
     backdrop-filter: blur(25px);
     border-radius: 10px;
@@ -10,6 +9,9 @@
     grid-row-start: 1;
     grid-row-end: 2;
     padding-top: 15px;
+    background: #161A25;
+    box-shadow: -29px 60px 90px rgba(23, 18, 43, 0.55);
+    backdrop-filter: blur(25px);
 }
 
 .trades-controls {
