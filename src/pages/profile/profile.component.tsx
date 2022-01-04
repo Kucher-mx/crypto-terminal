@@ -11,14 +11,14 @@ import { setRisk } from '../../redux/actions';
 import { StateType } from '../../types/redux.types';
 
 const Profile = () => {
-  const riskType: string = useSelector((state: StateType) => state.risk);
+  // const riskType: string = useSelector((state: StateType) => state.risk);
   const [state, setstate] = useState({
     apiKey: '',
     secretApiKey: '',
-    risk: riskType === 'auto',
-    stopLossCheckBox: false,
+    risk: false,
+    stopLossSwitch: false,
     stopLoss: '',
-    takeProfitCheckBox: false,
+    takeProfitSwitch: false,
     takeProfit: '',
   });
 
@@ -35,9 +35,17 @@ const Profile = () => {
   useEffect(() => {
     const json = sessionStorage.getItem('userData');
     if (json) {
-      // TODO: fix firebase and profile
-      const parsed = JSON.parse(json);
-      //setstate({ apiKey: parsed.apiKey, secretApiKey: parsed.secretApiKey });
+      const { apiKey, risk, secretApiKey, stopLoss, stopLossSwitch, takeProfit, takeProfitSwitch } =
+        JSON.parse(json);
+      setstate({
+        apiKey,
+        secretApiKey,
+        risk,
+        stopLossSwitch,
+        stopLoss,
+        takeProfitSwitch,
+        takeProfit,
+      });
     }
   }, []);
 
@@ -45,7 +53,7 @@ const Profile = () => {
     e.preventDefault();
     const json = sessionStorage.getItem('userData');
     if (json) {
-      const id = JSON.parse(json).id;
+      const { id } = JSON.parse(json);
       updateUserDoc(id, state);
     }
   };
@@ -96,10 +104,10 @@ const Profile = () => {
                 <div className="profile-input-block">
                   <div className="label">
                     <CheckboxCustom
-                      name={'stopLossCheckBox'}
+                      name={'stopLossSwitch'}
                       id={'stopLossCheckBox'}
                       onChange={onChangeHandler}
-                      value={state.stopLossCheckBox}
+                      value={state.stopLossSwitch}
                       customClass="profile-checkbox"
                     />
                     Stop-Loss
@@ -116,10 +124,10 @@ const Profile = () => {
                 <div className="profile-input-block">
                   <div className="label">
                     <CheckboxCustom
-                      name={'takeProfitCheckBox'}
+                      name={'takeProfitSwitch'}
                       id={'takeProfitCheckBox'}
                       onChange={onChangeHandler}
-                      value={state.takeProfitCheckBox}
+                      value={state.takeProfitSwitch}
                       customClass="profile-checkbox"
                     />
                     Take-Profit

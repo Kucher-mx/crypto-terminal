@@ -1,7 +1,7 @@
 export const urls = {
-  trades: "https://fapi.binance.com/fapi/v1/aggTrades?symbol=BTCUSDT",
-  coins: "https://www.binance.com/fapi/v1/ticker/24hr",
-  orderBook: "https://fapi.binance.com/fapi/v1/depth?symbol=BTCUSDT",
+  trades: 'https://fapi.binance.com/fapi/v1/aggTrades?symbol=BTCUSDT',
+  coins: 'https://www.binance.com/fapi/v1/ticker/24hr',
+  orderBook: 'https://fapi.binance.com/fapi/v1/depth?symbol=BTCUSDT',
 };
 
 // const urlOrderBook = "https://fapi.binance.com/fapi/v1/depth?symbol=BTCUSDT";
@@ -22,9 +22,6 @@ export const urls = {
 
 // binanceWebSocket.onmessage = function (event) {
 //   var message = JSON.parse(event.data);
-//   console.log("event", event);
-//   console.log("event.data", event.data);
-//   console.log("message", message);
 
 //   // var candlestick = message.k;
 
