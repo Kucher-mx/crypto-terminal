@@ -1,115 +1,10 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { StateType } from '../../types/redux.types';
 import ButtonCustom from '../button/button.component';
 import OrdersListItem from './orders-list-item.component';
 
 import './orders.styles.css';
-
-const orders = [
-  {
-    status: 'open',
-    side: 'sell',
-    tp: 409000000,
-    op: 'market',
-    quantity: 1.53,
-    time: Date.now(),
-  },
-  {
-    status: 'filled',
-    side: 'sell',
-    tp: 409000000,
-    op: 'market',
-    quantity: 1.53,
-    time: Date.now(),
-  },
-  {
-    status: 'filled',
-    side: 'sell',
-    tp: 409000000,
-    op: 'market',
-    quantity: 1.53,
-    time: Date.now(),
-  },
-  {
-    status: 'open',
-    side: 'sell',
-    tp: 409000000,
-    op: 'market',
-    quantity: 1.53,
-    time: Date.now(),
-  },
-  {
-    status: 'canceled',
-    side: 'sell',
-    tp: 409000000,
-    op: 'market',
-    quantity: 1.53,
-    time: Date.now(),
-  },
-  {
-    status: 'closed',
-    side: 'sell',
-    tp: 409000000,
-    op: 'market',
-    quantity: 1.53,
-    time: Date.now(),
-  },
-  {
-    status: 'closed',
-    side: 'sell',
-    tp: 409000000,
-    op: 'market',
-    quantity: 1.53,
-    time: Date.now(),
-  },
-  {
-    status: 'closed',
-    side: 'sell',
-    tp: 409000000,
-    op: 'market',
-    quantity: 1.53,
-    time: Date.now(),
-  },
-  {
-    status: 'closed',
-    side: 'sell',
-    tp: 409000000,
-    op: 'market',
-    quantity: 1.53,
-    time: Date.now(),
-  },
-  {
-    status: 'stops',
-    side: 'sell',
-    tp: 409000000,
-    op: 'market',
-    quantity: 1.53,
-    time: Date.now(),
-  },
-  {
-    status: 'stops',
-    side: 'sell',
-    tp: 409000000,
-    op: 'market',
-    quantity: 1.53,
-    time: Date.now(),
-  },
-  {
-    status: 'open',
-    side: 'sell',
-    tp: 409000000,
-    op: 'market',
-    quantity: 1.53,
-    time: Date.now(),
-  },
-  {
-    status: 'open',
-    side: 'sell',
-    tp: 409000000,
-    op: 'market',
-    quantity: 1.53,
-    time: Date.now(),
-  },
-];
 
 const formatDate = (date: number) => {
   const DO = new Date(date);
@@ -140,6 +35,7 @@ const buttons = [
 ];
 
 const Orders = () => {
+  const orders = useSelector((state: StateType) => state.orders);
   const [selectedButton, setSelectedButton] = useState('all');
 
   const filteredOrders =
@@ -178,15 +74,15 @@ const Orders = () => {
       />
       <div className="orders-grid-wrapper">
         {filteredOrders.map((item, idx) => {
-          const { status, side, tp, op, quantity, time } = item;
+          const { status, side, avgPrice, price, origQty, time } = item;
           return (
             <OrdersListItem
               key={idx}
               status={status}
               side={side}
-              tp={tp.toString()}
-              op={op}
-              quantity={quantity.toString()}
+              tp={avgPrice.toString()}
+              op={price}
+              quantity={origQty}
               time={formatDate(time)}
               closeHandler={() => console.log('close')}
             />

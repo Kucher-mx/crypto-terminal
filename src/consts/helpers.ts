@@ -1,5 +1,5 @@
 import { CreateOrderType } from '../types/gen.types';
-
+import CryptoJS from 'crypto-js';
 // create order:
 const apiKey = '173b2ac4d890633335c10caf56564615f129c676e158a3df1cc5b8214ec526db';
 const apiSecretKey = 'de29082a973663f99c4d2c873a78c660d1ba4c388cf8dd32d9ab982bea43ffde';
@@ -38,6 +38,7 @@ export const createOrder = ({
         'Content-Type': 'application/json',
         Accept: 'application/json',
       },
+      mode: 'no-cors',
     },
   )
     .then(response => response.json())

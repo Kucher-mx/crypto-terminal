@@ -14,6 +14,7 @@ const initialState: StateType = {
   },
   risk: 'manual',
   asset: 'BTCUSDT',
+  orders: [],
 };
 
 const rootReducer = (state = initialState, action: any) => {
@@ -114,6 +115,11 @@ const rootReducer = (state = initialState, action: any) => {
         ...state,
         asset: action.payload,
         trades: [],
+      };
+    case actionTypes.SET_ORDERS:
+      return {
+        ...state,
+        orders: action.payload,
       };
     default:
       return state;

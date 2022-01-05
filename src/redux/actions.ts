@@ -48,3 +48,10 @@ export const setAsset = (payload: any) => {
     payload,
   };
 };
+
+export const setOrders = (payload: any) => {
+  return {
+    type: actionTypes.SET_ORDERS,
+    payload,
+  };
+};

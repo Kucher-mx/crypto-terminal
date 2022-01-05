@@ -6,4 +6,5 @@ export const actionTypes = {
   SET_COINS_SORT: 'SET_COINS_SORT',
   SET_RISK: 'SET_RISK',
   SET_ASSET: 'SET_ASSET',
+  SET_ORDERS: 'SET_ORDERS',
 };
