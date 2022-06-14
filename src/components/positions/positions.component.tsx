@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import ButtonCustom from '../button/button.component';
-import InputOrder from '../inputs/input/input-order.component';
-import PositionsListItem from './positions-list-item.component';
+import React, { useState } from 'react'
+import ButtonCustom from '../button/button.component'
+import InputOrder from '../inputs/input/input-order.component'
+import PositionsListItem from './positions-list-item.component'
 
-import './positions.styles.css';
+import './positions.styles.css'
 
 const positions = [
   {
@@ -13,7 +13,28 @@ const positions = [
     lp: 'market',
     pnl: 1.53,
   },
-];
+  {
+    symbol: 'open',
+    size: 2 + 'BTC',
+    ep: 40540000,
+    lp: 'market',
+    pnl: 1.53,
+  },
+  {
+    symbol: 'open',
+    size: 1534 + 'ETH',
+    ep: 409000000,
+    lp: 'market',
+    pnl: 1.53,
+  },
+  {
+    symbol: 'open',
+    size: 1200 + 'USDT',
+    ep: 4043300000,
+    lp: 'market',
+    pnl: 1.53,
+  },
+]
 
 const positionsButtons = () => (
   <div className="positions-buttons">
@@ -24,22 +45,22 @@ const positionsButtons = () => (
       Limit
     </ButtonCustom>
   </div>
-);
+)
 
 const Positions = () => {
   const [positionsInputs, setPositionsInputs] = useState({
     persent: '',
     size: '',
-  });
+  })
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target
 
     setPositionsInputs({
       ...positionsInputs,
       [name]: value,
-    });
-  };
+    })
+  }
 
   return (
     <div className="positions">
@@ -54,8 +75,17 @@ const Positions = () => {
         customStyle={'positions-list-header'}
       />
       <div className="positions-grid-wrapper">
+        <div className="blurred_info">
+          <span>
+            currently is not avaliable due to{' '}
+            <a href="https://www.binance.com/en" target="blank">
+              binance
+            </a>{' '}
+            withdrawal changes
+          </span>
+        </div>
         {positions.map((item, idx) => {
-          const { symbol, size, ep, lp, pnl } = item;
+          const { symbol, size, ep, lp, pnl } = item
           return (
             <div className="position-item-wrapper">
               <PositionsListItem
@@ -75,19 +105,14 @@ const Positions = () => {
                   onChange={changeHandler}
                 />
 
-                <InputOrder
-                  placeholder={''}
-                  value={positionsInputs.size}
-                  name={'size'}
-                  onChange={changeHandler}
-                />
+                <InputOrder placeholder={''} value={positionsInputs.size} name={'size'} onChange={changeHandler} />
               </div>
             </div>
-          );
+          )
         })}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Positions;
+export default Positions

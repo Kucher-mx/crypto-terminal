@@ -1,101 +1,126 @@
-
 .orders {
-    grid-column-start: 2;
-    grid-column-end: 4;
-    grid-row-start: 3;
-    grid-row-end: 4;
-    position: relative;
-    padding-bottom: 5px;
-    border-radius: 10px;
-    background: #161A25;
-    box-shadow: -29px 60px 90px rgba(23, 18, 43, 0.55);
-    backdrop-filter: blur(25px);
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  position: relative;
+  padding-bottom: 5px;
+  border-radius: 10px;
+  background: #161a25;
+  box-shadow: -29px 60px 90px rgba(23, 18, 43, 0.55);
+  backdrop-filter: blur(25px);
 }
 
 .orders::before {
-    content: '';
-    position: absolute; 
-    top: -5px;
-    width: 100%;
-    height: 1px;
-    background-color: rgba(255, 255, 255, 0.2);
+  content: '';
+  position: absolute;
+  top: -5px;
+  width: 100%;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .orders-header {
-    position: sticky;
-    height: 65px;
-    padding-top: 7px;
-    overflow: hidden;
+  position: sticky;
+  height: 65px;
+  padding-top: 7px;
+  overflow: hidden;
 }
 
 .button-menu {
-    margin-top: 5px;
-    display: flex;
+  margin-top: 5px;
+  display: flex;
 }
 
 .orders-button {
-    padding: 3px 8px;
-    width: fit-content;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
+  padding: 3px 8px;
+  width: fit-content;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
 }
 
 .orders-button-active {
-    background: rgba(239, 83, 80, 0.6);
+  background: rgba(239, 83, 80, 0.6);
 }
 
 .orders-grid-wrapper {
-    height: calc(100% - 100px);
-    overflow: scroll;
-    position: relative;
+  height: calc(100% - 100px);
+  overflow: scroll;
+  position: relative;
+
+  overflow-y: hidden;
+}
+
+.orders-grid-wrapper .blurred_info {
+  backdrop-filter: blur(1px);
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+  padding: 0 15px;
+  font-size: 24px;
+  text-transform: uppercase;
+  flex-direction: column;
+}
+
+.orders-grid-wrapper .blurred_info a {
+  color: #fff;
 }
 
 .order-cell {
-    padding: 3px 0 3px 20px;
-    width: 16% ;
+  padding: 3px 0 3px 20px;
+  width: 16%;
 }
 
 .orders-list-item {
-    padding: 3px 25px;
-    justify-content: space-between;
-    display: flex;
-    font-size: 12px;
-    margin: 5px 0;
+  padding: 3px 25px;
+  justify-content: space-between;
+  display: flex;
+  font-size: 12px;
+  margin: 5px 0;
 }
 
-
 .orders-item-text {
-    color: #d3d3d3
+  color: #d3d3d3;
 }
 
 .orders-item-htext {
-    color: rgba(239, 83, 80, 0.85);
+  color: rgba(239, 83, 80, 0.85);
 }
 
-.order-price{
-    color: rgba(239, 83, 80, 0.85);
-    border: 1px solid rgba(239, 83, 80, 0.85);
-    border-radius: 5px;
-    padding: 1px 3px;
-    width: fit-content;
+.order-price {
+  color: rgba(239, 83, 80, 0.85);
+  border: 1px solid rgba(239, 83, 80, 0.85);
+  border-radius: 5px;
+  padding: 1px 3px;
+  width: fit-content;
 }
 
 .orders-list-header {
-    margin-bottom: 5px;
-    top: 0;
-    background: rgb(103, 99, 99);
-    position: sticky;
+  margin-bottom: 5px;
+  top: 0;
+  background: rgb(103, 99, 99);
+  position: sticky;
 }
 
-.orders-list-header > .orders-item-text, .orders-list-header > .orders-item-htext, .orders-list-header .order-price {
-    font-size: 15px;
-    border: none;
-    text-transform: capitalize;
-    color: #d3d3d3
+.orders-list-header > .orders-item-text,
+.orders-list-header > .orders-item-htext,
+.orders-list-header .order-price {
+  font-size: 15px;
+  border: none;
+  text-transform: capitalize;
+  color: #d3d3d3;
 }
 
 .close {
-    color: rgba(239, 83, 80, 1);
-    cursor: pointer;
-    width: 4%;
+  color: rgba(239, 83, 80, 1);
+  cursor: pointer;
+  width: 4%;
 }
